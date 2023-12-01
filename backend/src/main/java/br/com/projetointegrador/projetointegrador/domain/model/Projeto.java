@@ -1,6 +1,7 @@
 package br.com.projetointegrador.projetointegrador.domain.model;
 
 
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 
 public class Projeto {
@@ -22,6 +23,18 @@ public class Projeto {
         this.prPessoaCoordena = prPessoaCoordena;
         this.prPessoaCadastra = prPessoaCadastra;
     }
+
+    public static Projeto toProjeto(CriarProjetoRequestDTO projetoRequestDTO) {
+        Projeto projeto = new Projeto();
+        projeto.setPrNome(projetoRequestDTO.prNome());
+        projeto.setPrObjetivo(projetoRequestDTO.prObjetivo());
+        projeto.setPrRecursos(projetoRequestDTO.prRecursos());
+        projeto.setPrPessoaCadastra(projetoRequestDTO.prPessoaCadastra());
+        projeto.setPrPessoaCoordena(projetoRequestDTO.prPessoaCoordena());
+
+        return projeto;
+    }
+
 
     public Long getPrId() {
         return prId;
