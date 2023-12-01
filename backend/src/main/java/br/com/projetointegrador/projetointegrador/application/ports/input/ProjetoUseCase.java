@@ -8,7 +8,6 @@ import java.util.UUID;
 public interface ProjetoUseCase {
     Projeto criarProjeto(Projeto projeto);
     List<Projeto> listarProjetos();
-    Boolean deletarProjeto(UUID projeto_ID);
-
-    Boolean atualizarProjeto(UUID projeto_ID, Projeto projeto);
+    Boolean deletarProjeto(Long projetoId);
+    Boolean atualizarProjeto(Projeto projeto);
 }

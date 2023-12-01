@@ -8,7 +8,6 @@ import java.util.UUID;
 public interface AtividadeUseCase {
     Atividade criarAtividade(Atividade atividade);
     List<Atividade> listarAtividades();
-    Boolean deletarAtividade(UUID atividade_ID);
-
-    Boolean atualizarAtividade(UUID atividade_ID, Atividade atividade);
+    Boolean deletarAtividade(Long atividadeId);
+    Boolean atualizarAtividade(Atividade atividade);
 }
