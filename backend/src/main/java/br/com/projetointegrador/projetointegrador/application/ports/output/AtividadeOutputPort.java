@@ -1,6 +1,6 @@
 package br.com.projetointegrador.projetointegrador.application.ports.output;
 
-import br.com.projetointegrador.projetointegrador.domain.model.Atividade;
+import br.com.projetointegrador.projetointegrador.domain.model.Atividade.Atividade;
 
 import java.util.List;
 import java.util.UUID;
