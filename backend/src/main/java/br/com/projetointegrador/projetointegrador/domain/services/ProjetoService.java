@@ -23,12 +23,14 @@ public class ProjetoService  implements ProjetoUseCase {
     }
 
     @Override
-    public Boolean deletarProjeto(UUID projeto_ID) {
-        return projetoOutputPort.delete(projeto_ID);
+    public Boolean deletarProjeto(Long projetoId) {
+        return null;
     }
 
     @Override
-    public Boolean atualizarProjeto(UUID projeto_ID, Projeto projeto) {
-        return projetoOutputPort.update(projeto_ID , projeto);
+    public Boolean atualizarProjeto(Projeto projeto) {
+        return null;
     }
+
+
 }

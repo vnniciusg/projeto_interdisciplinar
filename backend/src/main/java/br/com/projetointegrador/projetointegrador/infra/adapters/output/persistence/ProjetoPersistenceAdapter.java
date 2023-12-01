@@ -8,7 +8,6 @@ import br.com.projetointegrador.projetointegrador.infra.adapters.output.persiste
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
@@ -28,12 +27,13 @@ public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
     }
 
     @Override
-    public Boolean delete(UUID projeto_ID) {
+    public Boolean delete(Long projetoId) {
         return null;
     }
 
     @Override
-    public Boolean update(UUID projeto_ID, Projeto projeto) {
+    public Boolean update(Projeto projeto) {
         return null;
     }
+
 }
