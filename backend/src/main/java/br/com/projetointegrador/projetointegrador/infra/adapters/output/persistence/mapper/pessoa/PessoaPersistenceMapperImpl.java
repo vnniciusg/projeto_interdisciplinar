@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Component
 @RequiredArgsConstructor
@@ -20,5 +23,10 @@ public class PessoaPersistenceMapperImpl implements PessoaPersistenceMapper {
     @Override
     public Pessoa toPessoa(PessoaEntity pessoaEntity) {
         return modelMapper.map(pessoaEntity, Pessoa.class);
+    }
+
+    @Override
+    public List<Pessoa> toPessoas(List<PessoaEntity> pessoaEntities) {
+        return pessoaEntities.stream().map(this::toPessoa).collect(Collectors.toList());
     }
 }
