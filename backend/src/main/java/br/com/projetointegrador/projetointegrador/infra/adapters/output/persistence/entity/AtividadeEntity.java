@@ -17,13 +17,11 @@ public class AtividadeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long aId;
-
     @ManyToOne
     @JoinColumn(name = "projeto_id")
     private ProjetoEntity aProjeto;
     private String aDescricao;
     private TipoAtividade aTipo;
-
     @ManyToOne
     @JoinColumn(name = "pessoa_cadastra_atividade_id")
     private PessoaEntity aPessoaCadastra;
