@@ -34,7 +34,6 @@ public class SecurityConfigurations {
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     req.requestMatchers( HttpMethod.POST,"/api/v1/pessoas").permitAll();
                     req.requestMatchers( HttpMethod.POST,"/api/v1/pessoas/login").permitAll();
-                    req.requestMatchers(HttpMethod.GET , "/api/v1/projetos").permitAll();
                     req.requestMatchers(HttpMethod.POST , "/api/v1/atividades").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_COORDENADOR");
                     req.requestMatchers(HttpMethod.POST , "/api/v1/projetos").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_COORDENADOR");
                     req.anyRequest().authenticated();
