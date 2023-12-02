@@ -30,13 +30,15 @@ public class BeanConfiguration {
             ProjetoRepository projetoRepository ,
             ProjetoPersistenceMapper projetoPersistenceMapper,
             AdministradorCriaProjetoRepository administradorCriaProjetoRepository,
-            CoordenadorCriaProjetoRepository coordenadorCriaProjetoRepository
+             CoordenadorCriaProjetoRepository coordenadorCriaProjetoRepository,
+            PessoaRepository pessoaRepository
     ){
         return new ProjetoPersistenceAdapter(
                 projetoRepository ,
                 projetoPersistenceMapper,
                 administradorCriaProjetoRepository,
-                coordenadorCriaProjetoRepository
+                coordenadorCriaProjetoRepository,
+                pessoaRepository
         );
     }
     @Bean
