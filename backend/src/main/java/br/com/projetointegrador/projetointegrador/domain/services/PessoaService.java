@@ -2,6 +2,7 @@ package br.com.projetointegrador.projetointegrador.domain.services;
 
 import br.com.projetointegrador.projetointegrador.application.ports.input.PessoaUseCase;
 import br.com.projetointegrador.projetointegrador.application.ports.output.PessoaOutputPort;
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 
 import java.util.List;
@@ -14,8 +15,11 @@ public class PessoaService implements PessoaUseCase {
         this.pessoaOutputPort = pessoaOutputPort;
     }
 
+
     @Override
-    public Pessoa criarPessoa(Pessoa pessoa){return pessoaOutputPort.criarPessoa(pessoa);}
+    public Pessoa criarPessoa(CriarPessoaDTO requestDTO) {
+        return pessoaOutputPort.criarPessoa(requestDTO);
+    }
 
     @Override
     public List<Pessoa> listarPessoas() {
@@ -24,11 +28,11 @@ public class PessoaService implements PessoaUseCase {
 
     @Override
     public Boolean deletarPessoa(Long pessoaId) {
-        return null;
+        return pessoaOutputPort.delete(pessoaId);
     }
 
     @Override
-    public Boolean atualizarPessoa(Pessoa pessoa) {
-        return null;
+    public Pessoa atualizarPessoa(Pessoa pessoa) {
+        return pessoaOutputPort.update(pessoa);
     }
 }
