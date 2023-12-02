@@ -24,15 +24,6 @@ public class Projeto {
         this.prPessoaCadastra = prPessoaCadastra;
     }
 
-    public static Projeto toProjeto(CriarProjetoRequestDTO projetoRequestDTO) {
-        Projeto projeto = new Projeto();
-        
-        projeto.setPrNome(projetoRequestDTO.prNome());
-        projeto.setPrObjetivo(projetoRequestDTO.prObjetivo());
-        projeto.setPrRecursos(projetoRequestDTO.prRecursos());
-
-        return projeto;
-    }
 
 
     public Long getPrId() {
