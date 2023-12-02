@@ -2,15 +2,18 @@ package br.com.projetointegrador.projetointegrador.infra.adapters.output.persist
 
 import br.com.projetointegrador.projetointegrador.application.ports.output.ProjetoOutputPort;
 import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
+import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.TipoPessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.AtividadeEntity;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.ProjetoEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.administrador.AdministradorCriaAtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.administrador.AdministradorCriaProjetoEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.coordenador.CoordenadorCriaAtivadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.coordenador.CoordenadorCriaProjetoEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto.ProjetoPersistenceMapper;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.PessoaRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.ProjetoRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.administrador.AdministradorCriaProjetoRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.coordenador.CoordenadorCriaProjetoRepository;
@@ -18,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
@@ -26,6 +30,7 @@ public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
     private final ProjetoPersistenceMapper projetoPersistenceMapper;
     private final AdministradorCriaProjetoRepository administradorCriaProjetoRepository;
     private final CoordenadorCriaProjetoRepository coordenadorCriaProjetoRepository;
+    private final PessoaRepository pessoaRepository;
     @Override
     public Projeto save(CriarProjetoRequestDTO requestDTO) {
         try{
@@ -33,6 +38,13 @@ public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
             projetoEntity.setPrNome(requestDTO.getPrNome());
             projetoEntity.setPrObjetivo(requestDTO.getPrObjetiv());
             projetoEntity.setPrRecursos(requestDTO.getPrRecursos());
+
+            Optional<PessoaEntity> pessoaEntityOptional = pessoaRepository.findById(requestDTO.getPrIdPessoaCadastra());
+
+            PessoaEntity pessoaEntity = pessoaEntityOptional.orElseThrow(() ->
+                    new IllegalArgumentException("Não foi possivel encontrar a pessoa que está cadastrando o projeto : " + requestDTO.getPrIdPessoaCadastra()));
+
+            projetoEntity.setPrPessoaCadastra(pessoaEntity);
 
             ProjetoEntity projeto = projetoRepository.save(projetoEntity);
 

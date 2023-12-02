@@ -5,6 +5,7 @@ import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequest
 import br.com.projetointegrador.projetointegrador.domain.dto.ListarProjetosResponseDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 import br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.mapper.projeto.ProjetoMapper;
+import br.com.projetointegrador.projetointegrador.infra.adapters.token.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,14 @@ public class ProjetoController {
 
     private final ProjetoUseCase projetoUseCase;
     private final ProjetoMapper projetoMapper;
+    private final TokenService tokenService;
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> criarProjeto(@RequestBody @Validated CriarProjetoRequestDTO requestDTO ){
+    public ResponseEntity<?> criarProjeto(@RequestHeader("Authorization") String token,@RequestBody @Validated CriarProjetoRequestDTO requestDTO ){
         try {
+            Long id = tokenService.extractIdAndConvertToNumber(token);
+            requestDTO.setPrIdPessoaCadastra(id);
             projetoUseCase.criarProjeto(requestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {

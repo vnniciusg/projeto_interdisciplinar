@@ -1,5 +1,6 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto;
 
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.ProjetoEntity;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,8 @@ public class ProjetoPersistenceMapperImpl implements ProjetoPersistenceMapper {
 
     private final ModelMapper modelMapper;
     @Override
-    public ProjetoEntity toProjetoEntity(Projeto projeto) {
-        return modelMapper.map(projeto, ProjetoEntity.class);
+    public ProjetoEntity toProjetoEntity(CriarProjetoRequestDTO criarProjetoRequestDTO) {
+        return modelMapper.map(criarProjetoRequestDTO, ProjetoEntity.class);
     }
     @Override
     public Projeto toProjeto(ProjetoEntity projetoEntity) {
