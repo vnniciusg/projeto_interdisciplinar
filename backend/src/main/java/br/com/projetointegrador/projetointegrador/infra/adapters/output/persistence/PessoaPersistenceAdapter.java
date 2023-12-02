@@ -34,7 +34,7 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
             pessoaEntity.setpTelRecado(criarPessoaDTO.getpTelRecado());
             pessoaEntity.setpDataCriacao(new Date());
             pessoaEntity = pessoaRepository.save(pessoaEntity);
-
+            return pessoaPersistenceMapper.toPessoa(pessoaEntity);
 
         }catch (DataIntegrityViolationException e){
             throw new RuntimeException("Erro ao salvar pessoa : " + e.getMessage());
@@ -45,16 +45,37 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
 
     @Override
     public List<Pessoa> list() {
-        return null;
+        List<PessoaEntity> pessoaEntities = pessoaRepository.findAll();
+        return pessoaPersistenceMapper.toPessoas(pessoaEntities);
     }
 
     @Override
     public Boolean delete(Long pessoa_id) {
-        return null;
+        try{
+            pessoaRepository.deleteById(pessoa_id);
+            return true;
+        }catch(Exception e){
+            throw new RuntimeException("Algo inesperado ocorreu ao deletar pessoa " + pessoa_id + " : "  + e.getMessage());
+        }
+
     }
 
     @Override
-    public Boolean update(Pessoa pessoa) {
-        return null;
+    public Pessoa update(Pessoa pessoa) {
+        Long pessoa_Id = pessoa.getpID();
+        PessoaEntity pessoaEntity = pessoaRepository.findById(pessoa_Id)
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+        pessoaEntity.setpRG(pessoa.getpRG());
+        pessoaEntity.setpCpf(pessoa.getpCpf());
+        pessoaEntity.setpTipo(pessoa.getpTipo());
+        pessoaEntity.setpSenha(pessoa.getpSenha());
+        pessoaEntity.setpNome(pessoa.getpNome());
+        pessoaEntity.setpNomeMae(pessoa.getpNomeMae());
+        pessoaEntity.setpNomePai(pessoa.getpNomePai());
+        pessoaEntity.setpTelResidencial(pessoa.getpTelResidencial());
+        pessoaEntity.setpTelRecado(pessoa.getpTelRecado());
+        pessoaEntity.setpDataCriacao(new Date());
+        pessoaEntity = pessoaRepository.save(pessoaEntity);
+        return pessoaPersistenceMapper.toPessoa(pessoaEntity);
     }
 }
