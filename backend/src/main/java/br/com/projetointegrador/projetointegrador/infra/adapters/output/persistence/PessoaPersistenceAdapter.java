@@ -1,6 +1,7 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence;
 
 import br.com.projetointegrador.projetointegrador.application.ports.output.PessoaOutputPort;
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
@@ -8,6 +9,7 @@ import br.com.projetointegrador.projetointegrador.infra.adapters.output.persiste
 import org.springframework.dao.DataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,12 +18,24 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
     private final PessoaRepository pessoaRepository;
     private final PessoaPersistenceMapper pessoaPersistenceMapper;
 
+
     @Override
-    public Pessoa criarPessoa(Pessoa pessoa) {
+    public Pessoa criarPessoa(CriarPessoaDTO criarPessoaDTO) {
         try{
-            PessoaEntity pessoaEntity = pessoaPersistenceMapper.toPessoaEntity(pessoa);
+            PessoaEntity pessoaEntity = new PessoaEntity();
+            pessoaEntity.setpRG(criarPessoaDTO.getpRG());
+            pessoaEntity.setpCpf(criarPessoaDTO.getpCpf());
+            pessoaEntity.setpTipo(criarPessoaDTO.getpTipo());
+            pessoaEntity.setpSenha(criarPessoaDTO.getpSenha());
+            pessoaEntity.setpNome(criarPessoaDTO.getpNome());
+            pessoaEntity.setpNomeMae(criarPessoaDTO.getpNomeMae());
+            pessoaEntity.setpNomePai(criarPessoaDTO.getpNomePai());
+            pessoaEntity.setpTelResidencial(criarPessoaDTO.getpTelResidencial());
+            pessoaEntity.setpTelRecado(criarPessoaDTO.getpTelRecado());
+            pessoaEntity.setpDataCriacao(new Date());
             pessoaEntity = pessoaRepository.save(pessoaEntity);
             return pessoaPersistenceMapper.toPessoa(pessoaEntity);
+
         }catch (DataIntegrityViolationException e){
             throw new RuntimeException("Erro ao salvar pessoa : " + e.getMessage());
         }catch (Exception e){
@@ -31,16 +45,37 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
 
     @Override
     public List<Pessoa> list() {
-        return null;
+        List<PessoaEntity> pessoaEntities = pessoaRepository.findAll();
+        return pessoaPersistenceMapper.toPessoas(pessoaEntities);
     }
 
     @Override
     public Boolean delete(Long pessoa_id) {
-        return null;
+        try{
+            pessoaRepository.deleteById(pessoa_id);
+            return true;
+        }catch(Exception e){
+            throw new RuntimeException("Algo inesperado ocorreu ao deletar pessoa " + pessoa_id + " : "  + e.getMessage());
+        }
+
     }
 
     @Override
-    public Boolean update(Pessoa pessoa) {
-        return null;
+    public Pessoa update(Pessoa pessoa) {
+        Long pessoa_Id = pessoa.getpID();
+        PessoaEntity pessoaEntity = pessoaRepository.findById(pessoa_Id)
+                .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
+        pessoaEntity.setpRG(pessoa.getpRG());
+        pessoaEntity.setpCpf(pessoa.getpCpf());
+        pessoaEntity.setpTipo(pessoa.getpTipo());
+        pessoaEntity.setpSenha(pessoa.getpSenha());
+        pessoaEntity.setpNome(pessoa.getpNome());
+        pessoaEntity.setpNomeMae(pessoa.getpNomeMae());
+        pessoaEntity.setpNomePai(pessoa.getpNomePai());
+        pessoaEntity.setpTelResidencial(pessoa.getpTelResidencial());
+        pessoaEntity.setpTelRecado(pessoa.getpTelRecado());
+        pessoaEntity.setpDataCriacao(new Date());
+        pessoaEntity = pessoaRepository.save(pessoaEntity);
+        return pessoaPersistenceMapper.toPessoa(pessoaEntity);
     }
 }
