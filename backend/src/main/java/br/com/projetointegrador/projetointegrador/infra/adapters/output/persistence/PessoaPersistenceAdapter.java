@@ -23,22 +23,23 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
     public Pessoa criarPessoa(CriarPessoaDTO criarPessoaDTO) {
         try{
             PessoaEntity pessoaEntity = new PessoaEntity();
-            pessoaEntity.setpRG(criarPessoaDTO.getpRG());
-            pessoaEntity.setpCpf(criarPessoaDTO.getpCpf());
-            pessoaEntity.setpTipo(criarPessoaDTO.getpTipo());
-            pessoaEntity.setpSenha(criarPessoaDTO.getpSenha());
-            pessoaEntity.setpNome(criarPessoaDTO.getpNome());
-            pessoaEntity.setpNomeMae(criarPessoaDTO.getpNomeMae());
-            pessoaEntity.setpNomePai(criarPessoaDTO.getpNomePai());
-            pessoaEntity.setpTelResidencial(criarPessoaDTO.getpTelResidencial());
-            pessoaEntity.setpTelRecado(criarPessoaDTO.getpTelRecado());
-            pessoaEntity.setpDataCriacao(new Date());
+            pessoaEntity.setPRG(criarPessoaDTO.getPRG());
+            pessoaEntity.setPCpf(criarPessoaDTO.getPCpf());
+            pessoaEntity.setPTipo(criarPessoaDTO.getPTipo());
+            pessoaEntity.setPEmail(criarPessoaDTO.getPEmail());
+            pessoaEntity.setPSenha(criarPessoaDTO.getPSenha());
+            pessoaEntity.setPNome(criarPessoaDTO.getPNome());
+            pessoaEntity.setPNomeMae(criarPessoaDTO.getPNomeMae());
+            pessoaEntity.setPNomePai(criarPessoaDTO.getPNomePai());
+            pessoaEntity.setPTelResidencial(criarPessoaDTO.getPTelResidencial());
+            pessoaEntity.setPTelRecado(criarPessoaDTO.getPTelRecado());
+            pessoaEntity.setPDataCriacao(new Date());
             pessoaEntity = pessoaRepository.save(pessoaEntity);
             return pessoaPersistenceMapper.toPessoa(pessoaEntity);
-
         }catch (DataIntegrityViolationException e){
             throw new RuntimeException("Erro ao salvar pessoa : " + e.getMessage());
-        }catch (Exception e){
+        }
+        catch (Exception e){
             throw new RuntimeException("Algo de errado aconteceu ao criar pessoa : " + e.getMessage());
         }
     }
@@ -65,16 +66,17 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
         Long pessoa_Id = pessoa.getpID();
         PessoaEntity pessoaEntity = pessoaRepository.findById(pessoa_Id)
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
-        pessoaEntity.setpRG(pessoa.getpRG());
-        pessoaEntity.setpCpf(pessoa.getpCpf());
-        pessoaEntity.setpTipo(pessoa.getpTipo());
-        pessoaEntity.setpSenha(pessoa.getpSenha());
-        pessoaEntity.setpNome(pessoa.getpNome());
-        pessoaEntity.setpNomeMae(pessoa.getpNomeMae());
-        pessoaEntity.setpNomePai(pessoa.getpNomePai());
-        pessoaEntity.setpTelResidencial(pessoa.getpTelResidencial());
-        pessoaEntity.setpTelRecado(pessoa.getpTelRecado());
-        pessoaEntity.setpDataCriacao(new Date());
+        pessoaEntity.setPRG(pessoa.getpRG());
+        pessoaEntity.setPCpf(pessoa.getpCpf());
+        pessoaEntity.setPTipo(pessoa.getpTipo());
+        pessoaEntity.setPEmail(pessoa.getpEmail());
+        pessoaEntity.setPSenha(pessoa.getpSenha());
+        pessoaEntity.setPNome(pessoa.getpNome());
+        pessoaEntity.setPNomeMae(pessoa.getpNomeMae());
+        pessoaEntity.setPNomePai(pessoa.getpNomePai());
+        pessoaEntity.setPTelResidencial(pessoa.getpTelResidencial());
+        pessoaEntity.setPTelRecado(pessoa.getpTelRecado());
+        pessoaEntity.setPDataCriacao(new Date());
         pessoaEntity = pessoaRepository.save(pessoaEntity);
         return pessoaPersistenceMapper.toPessoa(pessoaEntity);
     }

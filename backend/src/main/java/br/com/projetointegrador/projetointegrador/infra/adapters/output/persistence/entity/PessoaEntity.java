@@ -30,106 +30,10 @@ public class PessoaEntity implements UserDetails {
     private String pRG;
     @Column(length = 14, unique = true)
     private String pCpf;
-
-    public Long getpID() {
-        return pID;
-    }
-
-    public void setpID(Long pID) {
-        this.pID = pID;
-    }
-
-    public String getpRG() {
-        return pRG;
-    }
-
-    public void setpRG(String pRG) {
-        this.pRG = pRG;
-    }
-
-    public String getpCpf() {
-        return pCpf;
-    }
-
-    public void setpCpf(String pCpf) {
-        this.pCpf = pCpf;
-    }
-
-    public TipoPessoa getpTipo() {
-        return pTipo;
-    }
-
-    public void setpTipo(TipoPessoa pTipo) {
-        this.pTipo = pTipo;
-    }
-
-    public String getpSenha() {
-        return pSenha;
-    }
-
-    public void setpSenha(String pSenha) {
-        this.pSenha = pSenha;
-    }
-
-    public String getpNome() {
-        return pNome;
-    }
-
-    public void setpNome(String pNome) {
-        this.pNome = pNome;
-    }
-
-    public String getpNomeMae() {
-        return pNomeMae;
-    }
-
-    public void setpNomeMae(String pNomeMae) {
-        this.pNomeMae = pNomeMae;
-    }
-
-    public String getpNomePai() {
-        return pNomePai;
-    }
-
-    public void setpNomePai(String pNomePai) {
-        this.pNomePai = pNomePai;
-    }
-
-    public String getpTelResidencial() {
-        return pTelResidencial;
-    }
-
-    public void setpTelResidencial(String pTelResidencial) {
-        this.pTelResidencial = pTelResidencial;
-    }
-
-    public String getpTelRecado() {
-        return pTelRecado;
-    }
-
-    public void setpTelRecado(String pTelRecado) {
-        this.pTelRecado = pTelRecado;
-    }
-
-    public PessoaEntity getpPessoaCadastra() {
-        return pPessoaCadastra;
-    }
-
-    public void setpPessoaCadastra(PessoaEntity pPessoaCadastra) {
-        this.pPessoaCadastra = pPessoaCadastra;
-    }
-
-    public Date getpDataCriacao() {
-        return pDataCriacao;
-    }
-
-    public void setpDataCriacao(Date pDataCriacao) {
-        this.pDataCriacao = pDataCriacao;
-    }
-
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private TipoPessoa pTipo;
+    private String pEmail;
     private String pSenha;
     private String pNome;
     private String pNomeMae;
@@ -153,19 +57,19 @@ public class PessoaEntity implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if(pTipo!=null){
-            authorities.add(new SimpleGrantedAuthority(pTipo.name()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + pTipo.name()));
         }
         return authorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.pSenha;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.pEmail;
     }
 
     @Override

@@ -7,6 +7,7 @@ public class Pessoa {
     private String pRG;
     private String pCpf;
     private TipoPessoa pTipo;
+    private String pEmail;
     private String pSenha;
     private String pNome;
     private String pNomeMae;
@@ -19,11 +20,12 @@ public class Pessoa {
     public Pessoa(){
 
     }
-    public Pessoa(Long pID, String pRG, String pCpf, TipoPessoa pTipo, String pSenha, String pNome, String pNomeMae, String pNomePai, String pTelResidencial, String pTelRecado, Pessoa pPessoaCadastra, Date pDataCriacação) {
+    public Pessoa(Long pID, String pRG, String pCpf, TipoPessoa pTipo, String pEmail, String pSenha, String pNome, String pNomeMae, String pNomePai, String pTelResidencial, String pTelRecado, Pessoa pPessoaCadastra, Date pDataCriacação) {
         this.pID = pID;
         this.pRG = pRG;
         this.pCpf = pCpf;
         this.pTipo = pTipo;
+        this.pEmail = pEmail;
         this.pSenha = pSenha;
         this.pNome = pNome;
         this.pNomeMae = pNomeMae;
@@ -128,5 +130,13 @@ public class Pessoa {
 
     public void setpDataCriacação(Date pDataCriacação) {
         this.pDataCriacação = pDataCriacação;
+    }
+
+    public String getpEmail() {
+        return pEmail;
+    }
+
+    public void setpEmail(String pEmail) {
+        this.pEmail = pEmail;
     }
 }

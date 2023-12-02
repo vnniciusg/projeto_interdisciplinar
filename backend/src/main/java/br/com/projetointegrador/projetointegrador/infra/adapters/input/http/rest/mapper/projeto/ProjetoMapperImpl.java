@@ -13,11 +13,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProjetoMapperImpl implements ProjetoMapper{
 
-    private final ModelMapper modelMapper;
-
     @Override
     public ListarProjetosResponseDTO toProjetoResponse(Projeto projeto) {
-        return modelMapper.map(projeto , ListarProjetosResponseDTO.class);
+        ListarProjetosResponseDTO responseDTO = new ListarProjetosResponseDTO();
+        responseDTO.setPrId(projeto.getPrId());
+        responseDTO.setPrNome(projeto.getPrNome());
+        return responseDTO;
     }
 
     @Override

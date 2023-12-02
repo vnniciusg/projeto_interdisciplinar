@@ -7,7 +7,6 @@ import br.com.projetointegrador.projetointegrador.domain.model.Atividade.Ativida
 import lombok.AllArgsConstructor;
 
 import java.util.List;
-import java.util.UUID;
 
 @AllArgsConstructor
 public class AtividadeService implements AtividadeUseCase {

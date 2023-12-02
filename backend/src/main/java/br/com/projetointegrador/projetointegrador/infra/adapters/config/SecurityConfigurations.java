@@ -2,6 +2,7 @@ package br.com.projetointegrador.projetointegrador.infra.adapters.config;
 
 import br.com.projetointegrador.projetointegrador.infra.adapters.config.CorsConfigurations;
 import br.com.projetointegrador.projetointegrador.infra.adapters.security.SecurityFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -18,13 +19,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 @Configuration
 @EnableWebMvc
 public class SecurityConfigurations {
-    private final SecurityFilter securityFilter;
-    private final CorsConfigurations corsConfigurations;
+    @Autowired
+    private SecurityFilter securityFilter;
 
-    public SecurityConfigurations(SecurityFilter securityFilter, CorsConfigurations corsConfigurations) {
-        this.securityFilter = securityFilter;
-        this.corsConfigurations = corsConfigurations;
-    }
+    @Autowired
+    private CorsConfigurations corsConfigurations;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -33,8 +32,11 @@ public class SecurityConfigurations {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
-                    req.requestMatchers(HttpMethod.POST , "/api/v1/atividades").hasAnyRole("ADMINISTRADOR", "COORDENADOR");
-                    req.requestMatchers(HttpMethod.POST , "/api/v1/projetos").hasAnyRole("ADMINISTRADOR", "COORDENADOR");
+                    req.requestMatchers( HttpMethod.POST,"/api/v1/pessoas").permitAll();
+                    req.requestMatchers( HttpMethod.POST,"/api/v1/pessoas/login").permitAll();
+                    req.requestMatchers(HttpMethod.GET , "/api/v1/projetos").permitAll();
+                    req.requestMatchers(HttpMethod.POST , "/api/v1/atividades").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_COORDENADOR");
+                    req.requestMatchers(HttpMethod.POST , "/api/v1/projetos").hasAnyAuthority("ROLE_ADMINISTRADOR", "ROLE_COORDENADOR");
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter , UsernamePasswordAuthenticationFilter.class)

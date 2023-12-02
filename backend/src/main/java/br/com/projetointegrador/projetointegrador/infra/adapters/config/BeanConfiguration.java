@@ -1,6 +1,7 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.config;
 
 import br.com.projetointegrador.projetointegrador.domain.services.AtividadeService;
+import br.com.projetointegrador.projetointegrador.domain.services.PessoaService;
 import br.com.projetointegrador.projetointegrador.domain.services.ProjetoService;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.AtividadePersistenceAdapter;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.PessoaPersistenceAdapter;
@@ -73,5 +74,10 @@ public class BeanConfiguration {
     @Bean
     public AtividadeService atividadeService(AtividadePersistenceAdapter atividadePersistenceAdapter){
         return new AtividadeService(atividadePersistenceAdapter);
+    }
+
+    @Bean
+    public PessoaService pessoaService(PessoaPersistenceAdapter pessoaPersistenceAdapter){
+        return new PessoaService(pessoaPersistenceAdapter);
     }
 }

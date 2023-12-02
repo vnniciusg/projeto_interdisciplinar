@@ -1,5 +1,6 @@
 package br.com.projetointegrador.projetointegrador.domain.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListarProjetosResponseDTO {
-    private Long prId;
-
-    private String prNome;
+public class LoginDTO {
+    private String pEmail;
+    private String pSenha;
 }
