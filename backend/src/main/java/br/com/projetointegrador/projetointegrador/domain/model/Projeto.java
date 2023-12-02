@@ -26,11 +26,10 @@ public class Projeto {
 
     public static Projeto toProjeto(CriarProjetoRequestDTO projetoRequestDTO) {
         Projeto projeto = new Projeto();
+        
         projeto.setPrNome(projetoRequestDTO.prNome());
         projeto.setPrObjetivo(projetoRequestDTO.prObjetivo());
         projeto.setPrRecursos(projetoRequestDTO.prRecursos());
-        projeto.setPrPessoaCadastra(projetoRequestDTO.prPessoaCadastra());
-        projeto.setPrPessoaCoordena(projetoRequestDTO.prPessoaCoordena());
 
         return projeto;
     }

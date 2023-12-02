@@ -35,7 +35,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public ProjetoService projetoService(ProjetoPersistenceAdapter projetoPersistenceAdapter){
+    public ProjetoService projetoService(ProjetoPersistenceAdapter projetoPersistenceAdapter ){
         return new ProjetoService(projetoPersistenceAdapter);
     }
 }
