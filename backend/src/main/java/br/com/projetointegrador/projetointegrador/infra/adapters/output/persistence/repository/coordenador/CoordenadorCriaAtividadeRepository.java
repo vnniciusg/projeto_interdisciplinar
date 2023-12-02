@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CoordenadorCriaAtivadeRepository extends JpaRepository<CoordenadorCriaAtivadeEntity , Long> {
+public interface CoordenadorCriaAtividadeRepository extends JpaRepository<CoordenadorCriaAtivadeEntity , Long> {
 }

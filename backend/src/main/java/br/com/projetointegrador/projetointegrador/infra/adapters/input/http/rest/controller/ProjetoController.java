@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +25,9 @@ public class ProjetoController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> criarProjeto(@RequestBody CriarProjetoRequestDTO projetoRequestDTO ){
+    public ResponseEntity<?> criarProjeto(@RequestBody @Validated CriarProjetoRequestDTO requestDTO ){
         try {
-            Projeto projeto = Projeto.toProjeto(projetoRequestDTO);
-            projetoUseCase.criarProjeto(projeto);
+            projetoUseCase.criarProjeto(requestDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Erro ao criar o projeto: " + e.getMessage());

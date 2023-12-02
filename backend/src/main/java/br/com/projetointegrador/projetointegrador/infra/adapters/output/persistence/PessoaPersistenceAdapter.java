@@ -8,9 +8,10 @@ import br.com.projetointegrador.projetointegrador.infra.adapters.output.persiste
 import org.springframework.dao.DataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class PessoaPersistenceAdapter implements PessoaOutputPort {
-
 
     private final PessoaRepository pessoaRepository;
     private final PessoaPersistenceMapper pessoaPersistenceMapper;
@@ -26,5 +27,20 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
         }catch (Exception e){
             throw new RuntimeException("Algo de errado aconteceu ao criar pessoa : " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Pessoa> list() {
+        return null;
+    }
+
+    @Override
+    public Boolean delete(Long pessoa_id) {
+        return null;
+    }
+
+    @Override
+    public Boolean update(Pessoa pessoa) {
+        return null;
     }
 }
