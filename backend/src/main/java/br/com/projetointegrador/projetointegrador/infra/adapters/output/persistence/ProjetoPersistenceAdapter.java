@@ -36,7 +36,7 @@ public class ProjetoPersistenceAdapter implements ProjetoOutputPort {
         try{
             ProjetoEntity projetoEntity = new ProjetoEntity();
             projetoEntity.setPrNome(requestDTO.getPrNome());
-            projetoEntity.setPrObjetivo(requestDTO.getPrObjetiv());
+            projetoEntity.setPrObjetivo(requestDTO.getPrObjetivo());
             projetoEntity.setPrRecursos(requestDTO.getPrRecursos());
 
             Optional<PessoaEntity> pessoaEntityOptional = pessoaRepository.findById(requestDTO.getPrIdPessoaCadastra());
