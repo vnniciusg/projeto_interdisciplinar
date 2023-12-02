@@ -1,5 +1,6 @@
 package br.com.projetointegrador.projetointegrador.domain.model.Atividade;
 
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarAtividadeRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 
@@ -20,7 +21,7 @@ public class Atividade {
         this.aTipo = aTipo;
         this.aPessoaCadastra = aPessoaCadastra;
     }
-
+    
     public Long getaId() {
         return aId;
     }

@@ -1,10 +1,16 @@
 package br.com.projetointegrador.projetointegrador.domain.dto;
 
-import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record CriarProjetoRequestDTO(
-        String prNome,
-        String prRecursos,
-        String prObjetivo
-) {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class CriarProjetoRequestDTO{
+    private String prNome;
+    private String prRecursos;
+    private String prObjetiv;
 }

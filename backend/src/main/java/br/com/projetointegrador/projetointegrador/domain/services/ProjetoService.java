@@ -2,6 +2,7 @@ package br.com.projetointegrador.projetointegrador.domain.services;
 
 import br.com.projetointegrador.projetointegrador.application.ports.input.ProjetoUseCase;
 import br.com.projetointegrador.projetointegrador.application.ports.output.ProjetoOutputPort;
+import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 import lombok.AllArgsConstructor;
 
@@ -13,8 +14,8 @@ public class ProjetoService  implements ProjetoUseCase {
 
     private final ProjetoOutputPort projetoOutputPort;
     @Override
-    public Projeto criarProjeto(Projeto projeto) {
-        return projetoOutputPort.save(projeto);
+    public Projeto criarProjeto(CriarProjetoRequestDTO requestDTO) {
+        return projetoOutputPort.save(requestDTO);
     }
 
     @Override
