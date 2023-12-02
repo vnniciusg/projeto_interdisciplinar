@@ -38,7 +38,6 @@ public class SecurityFilter extends OncePerRequestFilter {
             if(pessoaToken.isEmpty()){
                 return;
             }
-            System.out.println(pessoaToken.get().getAuthorities());
             Collection<? extends GrantedAuthority> authorities = pessoaToken.get().getAuthorities();
             PessoaEntity pessoa = pessoaToken.get();
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(pessoa.getPEmail(), pessoa.getPSenha(),authorities);

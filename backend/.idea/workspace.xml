@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="fix : misc.xml">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/LoginDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/Pessoa/PessoaDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="fix : alterações em criarPessoa e listarProjetosmapper">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Pessoa/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/BeanConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/BeanConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/SecurityConfigurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/SecurityConfigurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/Pessoa/PessoaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaPersistenceAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/entity/PessoaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/entity/PessoaEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/PessoaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/PessoaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/security/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/security/SecurityFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/token/TokenJWTData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/token/TokenJWTData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/token/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/token/TokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarProjetoRequestDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarProjetoRequestDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/model/Pessoa/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/model/Pessoa/Pessoa.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/config/BeanConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/config/BeanConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "vinnicius",
     "last_opened_file_path": "/home/vnn/Documents/GitHub/projeto_interdisciplinar/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701446848351</updated>
       <workItem from="1701521051502" duration="8170000" />
-      <workItem from="1701547926550" duration="6982000" />
+      <workItem from="1701547926550" duration="7286000" />
     </task>
     <task id="LOCAL-00001" summary="feat : adição de spring boot security , token e spring doc">
       <option name="closed" value="true" />
@@ -144,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701548000029</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix : alterações em criarPessoa e listarProjetosmapper">
+      <option name="closed" value="true" />
+      <created>1701555069945</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701555069945</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +151,7 @@
     <MESSAGE value="feat : criação do serviço de token" />
     <MESSAGE value="feat : criação dos DTO para request de atividade e projeto" />
     <MESSAGE value="fix : misc.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix : misc.xml" />
+    <MESSAGE value="fix : alterações em criarPessoa e listarProjetosmapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : alterações em criarPessoa e listarProjetosmapper" />
   </component>
 </project>

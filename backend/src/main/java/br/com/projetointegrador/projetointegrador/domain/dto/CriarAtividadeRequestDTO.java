@@ -1,6 +1,7 @@
 package br.com.projetointegrador.projetointegrador.domain.dto;
 
 import br.com.projetointegrador.projetointegrador.domain.model.Atividade.TipoAtividade;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CriarAtividadeRequestDTO {
+    @JsonProperty("aIdProjeto")
     private Long aIdProjeto;
+
+    @JsonProperty("aDescricao")
     private String aDescricao;
-    private TipoAtividade aTipo ;
+
+    @JsonProperty("aTipo")
+    private TipoAtividade aTipo;
+
+    @JsonProperty("aIdPessoaCadastra")
     private Long aIdPessoaCadastra;
 }

@@ -38,6 +38,7 @@ public class PessoaController {
             String hashedPassword = passwordEncoder.encode(requestDTO.getPSenha());
             requestDTO.setPSenha(hashedPassword);
             Pessoa pessoa = pessoaUseCase.criarPessoa(requestDTO);
+            System.out.println(pessoa.getpID());
             String token = tokenService.gerarToken(pessoa.getpID());
             return ResponseEntity.status(HttpStatus.CREATED).body(new TokenJWTData(token));
         }catch(Exception e){
