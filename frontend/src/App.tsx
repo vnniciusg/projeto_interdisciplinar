@@ -16,7 +16,7 @@ function App() {
     } else {
       setShowNavAndFooter(true);
     }
-  }, [])
+  }, [window.location.pathname])
   return (
     <>
       <React.Suspense>

@@ -14,15 +14,17 @@ const Header = ({ isShown }: HeaderProps) => {
           <div className="font-title font-bold text-2xl flex flex-shrink-0 text-secondary">Logo</div>
           <div className="flex flex-grow gap-10 justify-center font-title">
             <Link link="/" text="Início" target="_self" />
-            <Link link="/atividades" text="Ver atividades" target="_self" />
-            <Link link="/projetos" text="Ver projetos" target="_self" />
           {!isLoggedIn() ? (
             <>
             <Link link="/registro" text="Cadastro" target="_self" />
             <Link link="/login" text="Login" target="_self" />
             </>
           ) : (
+            <>
+            <Link link="/atividades" text="Ver atividades" target="_self" />
+            <Link link="/projetos" text="Ver projetos" target="_self" />
             <button className="bg-secondary px-4 py-2 rounded-lg text-white text-sm hover:bg-secondary/80 active:scale-[0.98] transition duration-300" onClick={() => logout()} >Logout</button>
+            </>
           )}
           </div>
         </nav>

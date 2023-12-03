@@ -3,6 +3,7 @@ import { FaFolderPlus, FaFolderOpen } from "react-icons/fa";
 import { MdContacts } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa6";
 import { LuLoader2 } from "react-icons/lu";
+import { MdAssignment } from "react-icons/md";
 import {
   Tab,
   Tabs,
@@ -28,10 +29,14 @@ import {
   CreateNewActivity,
   GetAllActivities,
   GetAvailableProjects,
+  GetDoingActivities,
+  GetSelfRegisteredActivities,
 } from "services/Api";
 import Card from "components/Card";
 import SearchInput from "components/SearchInput";
 import LoginContext from "contexts/AuthContext";
+import { PessoaTrabalhaAtividade } from "models/RelacoesN";
+import ActivitiesCard from "components/ActivitiesCard";
 
 const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
   children,
@@ -70,24 +75,29 @@ const Atividades = () => {
   const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>(
     []
   );
+  const [myActivities, setMyActivities] = React.useState<RecuperaAtividade[]>(
+    []
+  );
+  const [doingActivities, setDoingActivities] = React.useState<PessoaTrabalhaAtividade[]>([]);
   const [acitivitySearch, setActivitySearch] = React.useState<string>("");
-  const { isAdmin, isCoord } = React.useContext(LoginContext);
+  const { isAdmin, isCoord, userToken } = React.useContext(LoginContext);
   React.useEffect(() => {
-    Promise.all([
-      GetAvailableProjects(
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA"
-      ),
-      GetAllActivities(
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA"
-      ),
-    ])
-      .then((responses) => {
-        setAvailableProjects(responses[0].data);
-        setAllActivities(responses[1].data);
-      })
-      .catch((errs) => console.log(errs));
+    if (userToken) {
+      Promise.all([
+        GetAvailableProjects(userToken),
+        GetAllActivities(userToken),
+        GetSelfRegisteredActivities(userToken),
+        GetDoingActivities(userToken),
+      ])
+        .then((responses) => {
+          setAvailableProjects(responses[0].data);
+          setAllActivities(responses[1].data);
+          setMyActivities(responses[2].data);
+          setDoingActivities(responses[3].data)
+        })
+        .catch((errs) => console.log(errs));
+    }
   }, []);
-  console.log(availableProjects);
   const [tabIndex, setTabIndex] = React.useState<number>(0);
   const { control, handleSubmit } = useForm<CadastroAtividade>({
     defaultValues: {
@@ -116,20 +126,19 @@ const Atividades = () => {
       aTipo: data.aTipo,
     };
     console.log(newData);
-    Promise.resolve(
-      CreateNewActivity(
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU5MTYwOX0.lqBXp4llFMt7P2rcugnZs2mHrnyaY24-1-FOTAoHYvk",
-        newData
-      )
-        .then((res) => {
-          console.log(res);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsLoading(false);
-        })
-    );
+    if (userToken) {
+      Promise.resolve(
+        CreateNewActivity(userToken, newData)
+          .then((res) => {
+            console.log(res);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            setIsLoading(false);
+          })
+      );
+    }
   };
 
   return (
@@ -142,17 +151,19 @@ const Atividades = () => {
       >
         <TabList className="w-full md:w-[30%] flex flex-col gap-y-2 text-sm py-10 px-4 bg-white shadow-xl rounded-lg h-auto self-start">
           {isAdmin() || isCoord() ? (
-              <>
-                <CustomTab>
-                  <FaFolderPlus />
-                  Cadastrar nova atividade{" "}
-                </CustomTab>
-                <CustomTab>
-                  <FaFolderOpen />
-                  Ver atividades cadastradas por mim
-                </CustomTab>
-              </>
-            ) : (<></>)}
+            <>
+              <CustomTab>
+                <FaFolderPlus />
+                Cadastrar nova atividade{" "}
+              </CustomTab>
+              <CustomTab>
+                <FaFolderOpen />
+                Ver atividades cadastradas por mim
+              </CustomTab>
+            </>
+          ) : (
+            <></>
+          )}
           <CustomTab>
             <MdContacts />
             Ver minhas atividades
@@ -160,6 +171,10 @@ const Atividades = () => {
           <CustomTab>
             <FaBookOpen />
             Ver todas as atividades
+          </CustomTab>
+          <CustomTab>
+            <MdAssignment />
+            Ver atividades que as pessoas estão fazendo
           </CustomTab>
         </TabList>
         <CustomPanel>
@@ -176,7 +191,10 @@ const Atividades = () => {
                 field: { value, name, onChange },
                 formState: { errors },
               }) => (
-                <div>
+                <div className="flex flex-col gap-y-2">
+                  <label className="text-sm font-semibold">
+                    Selecione o projeto o qual esta atividade será vinculada
+                  </label>
                   <select
                     value={value}
                     onChange={onChange}
@@ -230,7 +248,10 @@ const Atividades = () => {
                 field: { value, name, onChange },
                 formState: { errors },
               }) => (
-                <div>
+                <div className="flex flex-col gap-y-2">
+                  <label className="text-sm font-semibold">
+                    Informe a descrição desta atividade
+                  </label>
                   <textarea
                     value={value}
                     onChange={onChange}
@@ -266,7 +287,16 @@ const Atividades = () => {
             />
           </form>
         </CustomPanel>
-        <CustomPanel>2</CustomPanel>
+        <CustomPanel>
+          <div className="flex flex-col gap-y-4">
+            <Title message="Aqui você consegue ver todas as atividades cadastradas por você" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
+              {myActivities.map((act, index) => (
+                <Card activity={act} key={index} />
+              ))}
+            </div>
+          </div>
+        </CustomPanel>
         <CustomPanel>3</CustomPanel>
         <CustomPanel>
           <div className="flex flex-col gap-y-4">
@@ -285,6 +315,16 @@ const Atividades = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
               {allActivities.map((act, index) => (
                 <Card activity={act} key={index} />
+              ))}
+            </div>
+          </div>
+        </CustomPanel>
+        <CustomPanel>
+        <div className="flex flex-col gap-y-4">
+            <Title message="Aqui você consegue ver todas as atividades que estão sendo feitas" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
+              {doingActivities.map((doing, index) => (
+                <ActivitiesCard key={index} activity={doing} />
               ))}
             </div>
           </div>

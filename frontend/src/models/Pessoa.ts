@@ -1,5 +1,5 @@
 export type Pessoa = {
-    pId: number;
+    pID: number;
     pRg: string;
     pCpf: string;
     pTipo: TipoPessoa;

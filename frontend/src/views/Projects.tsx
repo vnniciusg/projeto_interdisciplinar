@@ -18,8 +18,10 @@ import { useForm, Controller } from "react-hook-form";
 import { CadastroProjeto } from "models/DTOs";
 import Button from "components/Button";
 import Erro from "components/Erro";
-import { CreateNewProject } from "services/Api";
+import { CreateNewProject, GetEveryone } from "services/Api";
 import LoginContext from "contexts/AuthContext";
+import Input from "components/Input";
+import { Pessoa, TipoPessoa } from "models/Pessoa";
 
 const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
   children,
@@ -51,33 +53,47 @@ CustomPanel.tabsRole = "TabPanel";
 CustomTab.tabsRole = "Tab";
 
 const Projetos = () => {
-  const {isAdmin} = React.useContext(LoginContext);
+  const { isAdmin, userToken } = React.useContext(LoginContext);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [tabIndex, setTabIndex] = React.useState<number>(0);
   const { control, handleSubmit } = useForm<CadastroProjeto>({
     defaultValues: {
-      prNome: "1",
+      prNome: "",
       prObjetivo: "",
       prRecursos: "",
+      prIdPessoaCoordena: 0,
     },
   });
-
+  const [coords, setCoords] = React.useState<Pessoa[]>([]);
+  React.useEffect(() => {
+    if (userToken) {
+      Promise.resolve(
+        GetEveryone(userToken)
+          .then((res) => {
+            const allCoords= res.data.filter((users: Pessoa) => {
+              return users.pTipo === TipoPessoa.COORDENADOR
+            });
+            setCoords(allCoords)
+          })
+          .catch((err) => console.log(err))
+      );
+    }
+  }, []);
   const onSubmit = (data: CadastroProjeto) => {
     setIsLoading(true);
-    Promise.resolve(
-      CreateNewProject(
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTY0NjI0NH0.Z380S_rOEEXt9wJ1kPgrXeWT5L8eppzf2DUjmfHpSEU",
-        data
-      )
-        .then((res) => {
-          console.log(res);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.log(err);
-          setIsLoading(false);
-        })
-    );
+    if (userToken) {
+      Promise.resolve(
+        CreateNewProject(userToken, data)
+          .then((res) => {
+            console.log(res);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            console.log(err);
+            setIsLoading(false);
+          })
+      );
+    }
   };
   return (
     <>
@@ -118,6 +134,36 @@ const Projetos = () => {
               >
                 <Title message="Cadastre uma nova atividade para ser realizada por alguém" />
                 <Controller
+              name="prIdPessoaCoordena"
+              rules={{ required: true }}
+              render={({
+                field: { value, name, onChange },
+                formState: { errors },
+              }) => (
+                <div>
+                  <select
+                    value={value}
+                    onChange={onChange}
+                    id={name}
+                    className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm uppercase"
+                  >
+                    {coords.map((coord) => (
+                      <option key={coord.pID} value={coord.pID}>
+                        {coord.pID} - {coord.pNome}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.prIdPessoaCoordena &&
+                    (errors.prIdPessoaCoordena?.type == "required" ? (
+                      <Erro message="Selecione o tipo" />
+                    ) : (
+                      ""
+                    ))}
+                </div>
+              )}
+              control={control}
+            />
+                <Controller
                   control={control}
                   name="prNome"
                   rules={{ required: true }}
@@ -126,15 +172,17 @@ const Projetos = () => {
                     formState: { errors },
                   }) => (
                     <div>
-                      <select
+                      <Input
                         value={value}
                         onChange={onChange}
+                        type="text"
+                        label="Nome do projeto"
+                        placeholder="Informe o nome do projeto..."
                         id={name}
-                        className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm"
-                      ></select>
+                      />
                       {errors.prNome &&
                         (errors.prNome.type == "required" ? (
-                          <Erro message="Informe o projeto" />
+                          <Erro message="Informe o nome projeto" />
                         ) : (
                           ""
                         ))}
@@ -159,7 +207,7 @@ const Projetos = () => {
                       />
                       {errors.prRecursos &&
                         (errors.prRecursos?.type == "required" ? (
-                          <Erro message="Selecione o tipo" />
+                          <Erro message="Informe a lista de recursos" />
                         ) : (
                           ""
                         ))}
