@@ -1,8 +1,8 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.controller.Pessoa;
 
 import br.com.projetointegrador.projetointegrador.application.ports.input.PessoaUseCase;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
-import br.com.projetointegrador.projetointegrador.domain.dto.LoginDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.pessoa.request.CriarPessoaRequestDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.auth.request.LoginRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
@@ -33,7 +33,7 @@ public class PessoaController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> criarPessoa(@RequestBody CriarPessoaDTO requestDTO){
+    public ResponseEntity<?> criarPessoa(@RequestBody CriarPessoaRequestDTO requestDTO){
         try{
             String hashedPassword = passwordEncoder.encode(requestDTO.getPSenha());
             requestDTO.setPSenha(hashedPassword);
@@ -77,7 +77,7 @@ public class PessoaController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity efetuarLogin(@RequestBody LoginDTO data){
+    public ResponseEntity efetuarLogin(@RequestBody LoginRequestDTO data){
         try {
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(data.getPEmail() , data.getPSenha());
             Authentication authentication = this.manager.authenticate(usernamePasswordAuthenticationToken);

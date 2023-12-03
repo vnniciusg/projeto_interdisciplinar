@@ -1,7 +1,7 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence;
 
 import br.com.projetointegrador.projetointegrador.application.ports.output.PessoaOutputPort;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.pessoa.request.CriarPessoaRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
@@ -20,19 +20,19 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
 
 
     @Override
-    public Pessoa criarPessoa(CriarPessoaDTO criarPessoaDTO) {
+    public Pessoa criarPessoa(CriarPessoaRequestDTO criarPessoaRequestDTO) {
         try{
             PessoaEntity pessoaEntity = new PessoaEntity();
-            pessoaEntity.setPRG(criarPessoaDTO.getPRG());
-            pessoaEntity.setPCpf(criarPessoaDTO.getPCpf());
-            pessoaEntity.setPTipo(criarPessoaDTO.getPTipo());
-            pessoaEntity.setPEmail(criarPessoaDTO.getPEmail());
-            pessoaEntity.setPSenha(criarPessoaDTO.getPSenha());
-            pessoaEntity.setPNome(criarPessoaDTO.getPNome());
-            pessoaEntity.setPNomeMae(criarPessoaDTO.getPNomeMae());
-            pessoaEntity.setPNomePai(criarPessoaDTO.getPNomePai());
-            pessoaEntity.setPTelResidencial(criarPessoaDTO.getPTelResidencial());
-            pessoaEntity.setPTelRecado(criarPessoaDTO.getPTelRecado());
+            pessoaEntity.setPRG(criarPessoaRequestDTO.getPRG());
+            pessoaEntity.setPCpf(criarPessoaRequestDTO.getPCpf());
+            pessoaEntity.setPTipo(criarPessoaRequestDTO.getPTipo());
+            pessoaEntity.setPEmail(criarPessoaRequestDTO.getPEmail());
+            pessoaEntity.setPSenha(criarPessoaRequestDTO.getPSenha());
+            pessoaEntity.setPNome(criarPessoaRequestDTO.getPNome());
+            pessoaEntity.setPNomeMae(criarPessoaRequestDTO.getPNomeMae());
+            pessoaEntity.setPNomePai(criarPessoaRequestDTO.getPNomePai());
+            pessoaEntity.setPTelResidencial(criarPessoaRequestDTO.getPTelResidencial());
+            pessoaEntity.setPTelRecado(criarPessoaRequestDTO.getPTelRecado());
             pessoaEntity.setPDataCriacao(new Date());
             pessoaEntity = pessoaRepository.save(pessoaEntity);
             return pessoaPersistenceMapper.toPessoa(pessoaEntity);

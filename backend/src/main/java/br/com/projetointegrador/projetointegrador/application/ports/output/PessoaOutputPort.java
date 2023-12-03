@@ -1,14 +1,13 @@
 package br.com.projetointegrador.projetointegrador.application.ports.output;
 
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.pessoa.request.CriarPessoaRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface PessoaOutputPort {
 
-    Pessoa criarPessoa(CriarPessoaDTO criarPessoaDTO);
+    Pessoa criarPessoa(CriarPessoaRequestDTO criarPessoaRequestDTO);
     List<Pessoa> list();
     Boolean delete(Long pessoa_id);
 
