@@ -1,4 +1,4 @@
-package br.com.projetointegrador.projetointegrador.domain.dto;
+package br.com.projetointegrador.projetointegrador.application.dto.auth.request;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO {
+public class LoginRequestDTO {
     @JsonProperty("pEmail")
     private String pEmail;
 

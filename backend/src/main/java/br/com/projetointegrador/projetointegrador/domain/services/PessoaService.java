@@ -2,7 +2,7 @@ package br.com.projetointegrador.projetointegrador.domain.services;
 
 import br.com.projetointegrador.projetointegrador.application.ports.input.PessoaUseCase;
 import br.com.projetointegrador.projetointegrador.application.ports.output.PessoaOutputPort;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarPessoaDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.pessoa.request.CriarPessoaRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class PessoaService implements PessoaUseCase {
 
 
     @Override
-    public Pessoa criarPessoa(CriarPessoaDTO requestDTO) {
+    public Pessoa criarPessoa(CriarPessoaRequestDTO requestDTO) {
         return pessoaOutputPort.criarPessoa(requestDTO);
     }
 

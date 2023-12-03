@@ -15,14 +15,23 @@ import {
 import "react-tabs/style/react-tabs.css";
 import Title from "components/Title";
 import { useForm, Controller } from "react-hook-form";
-import { CadastroAtividade, RecuperaAtividade, RecuperaProjeto } from "models/DTOs";
+import {
+  CadastroAtividade,
+  RecuperaAtividade,
+  RecuperaProjeto,
+} from "models/DTOs";
 import { TipoAtividade } from "models/Atividade";
 import Button from "components/Button";
 import Select from "components/Select";
 import Erro from "components/Erro";
-import { CreateNewActivity, GetAllActivities, GetAvailableProjects } from "services/Api";
+import {
+  CreateNewActivity,
+  GetAllActivities,
+  GetAvailableProjects,
+} from "services/Api";
 import Card from "components/Card";
 import SearchInput from "components/SearchInput";
+import LoginContext from "contexts/AuthContext";
 
 const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
   children,
@@ -55,20 +64,30 @@ CustomTab.tabsRole = "Tab";
 
 const Atividades = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [availableProjects, setAvailableProjects] = React.useState<RecuperaProjeto[]>([]);
-  const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>([]);
+  const [availableProjects, setAvailableProjects] = React.useState<
+    RecuperaProjeto[]
+  >([]);
+  const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>(
+    []
+  );
   const [acitivitySearch, setActivitySearch] = React.useState<string>("");
+  const { isAdmin, isCoord } = React.useContext(LoginContext);
   React.useEffect(() => {
     Promise.all([
       GetAvailableProjects(
         "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA"
       ),
-      GetAllActivities("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA")
-      ]).then((responses) => {
+      GetAllActivities(
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA"
+      ),
+    ])
+      .then((responses) => {
         setAvailableProjects(responses[0].data);
         setAllActivities(responses[1].data);
-      }).catch((errs) => console.log(errs));
-    }, []);
+      })
+      .catch((errs) => console.log(errs));
+  }, []);
+  console.log(availableProjects);
   const [tabIndex, setTabIndex] = React.useState<number>(0);
   const { control, handleSubmit } = useForm<CadastroAtividade>({
     defaultValues: {
@@ -78,9 +97,9 @@ const Atividades = () => {
     },
   });
 
-  const tipos: { val: TipoAtividade}[] = [
+  const tipos: { val: TipoAtividade }[] = [
     { val: TipoAtividade.MANUTENCAO },
-    { val: TipoAtividade.IMPLEMENTACAO},
+    { val: TipoAtividade.IMPLEMENTACAO },
     { val: TipoAtividade.ALTERACAO },
     { val: TipoAtividade.MODELAGEM },
     { val: TipoAtividade.OUTRO },
@@ -88,7 +107,14 @@ const Atividades = () => {
 
   const onSubmit = (data: CadastroAtividade) => {
     setIsLoading(true);
-    const newData: CadastroAtividade = {aIdProjeto: typeof data.aIdProjeto === 'string' ? parseInt(data.aIdProjeto, 10) : data.aIdProjeto, aDescricao: data.aDescricao, aTipo: data.aTipo};
+    const newData: CadastroAtividade = {
+      aIdProjeto:
+        typeof data.aIdProjeto === "string"
+          ? parseInt(data.aIdProjeto, 10)
+          : data.aIdProjeto,
+      aDescricao: data.aDescricao,
+      aTipo: data.aTipo,
+    };
     console.log(newData);
     Promise.resolve(
       CreateNewActivity(
@@ -115,14 +141,18 @@ const Atividades = () => {
         className="flex flex-col md:flex-row items-center gap-6 font-medium text-text w-full"
       >
         <TabList className="w-full md:w-[30%] flex flex-col gap-y-2 text-sm py-10 px-4 bg-white shadow-xl rounded-lg h-auto self-start">
-          <CustomTab>
-            <FaFolderPlus />
-            Cadastrar nova atividade{" "}
-          </CustomTab>
-          <CustomTab>
-            <FaFolderOpen />
-            Ver atividades cadastradas por mim
-          </CustomTab>
+          {isAdmin() || isCoord() ? (
+              <>
+                <CustomTab>
+                  <FaFolderPlus />
+                  Cadastrar nova atividade{" "}
+                </CustomTab>
+                <CustomTab>
+                  <FaFolderOpen />
+                  Ver atividades cadastradas por mim
+                </CustomTab>
+              </>
+            ) : (<></>)}
           <CustomTab>
             <MdContacts />
             Ver minhas atividades
@@ -240,8 +270,8 @@ const Atividades = () => {
         <CustomPanel>3</CustomPanel>
         <CustomPanel>
           <div className="flex flex-col gap-y-4">
-              <Title message="Aqui você consegue ver todas as atividades, disponíveis ou não" />
-              <div className="w-full md:w-[70%]">
+            <Title message="Aqui você consegue ver todas as atividades, disponíveis ou não" />
+            <div className="w-full md:w-[70%]">
               <SearchInput
                 label="Busque por uma atividade especifica"
                 hasText={acitivitySearch.length > 0}
@@ -251,12 +281,12 @@ const Atividades = () => {
                 type="text"
                 onClick={() => setActivitySearch("")}
               />
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
-                {allActivities.map((act, index) => (
-                  <Card activity={act} key={index} />
-                ))}
-              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
+              {allActivities.map((act, index) => (
+                <Card activity={act} key={index} />
+              ))}
+            </div>
           </div>
         </CustomPanel>
       </Tabs>

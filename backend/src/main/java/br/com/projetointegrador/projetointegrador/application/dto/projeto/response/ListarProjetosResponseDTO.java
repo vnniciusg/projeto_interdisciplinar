@@ -1,4 +1,4 @@
-package br.com.projetointegrador.projetointegrador.domain.dto;
+package br.com.projetointegrador.projetointegrador.application.dto.projeto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ListarProjetosResponseDTO {
     private Long prId;
-
     private String prNome;
 }

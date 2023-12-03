@@ -2,15 +2,19 @@ package br.com.projetointegrador.projetointegrador.infra.adapters.config;
 
 import br.com.projetointegrador.projetointegrador.domain.services.AtividadeService;
 import br.com.projetointegrador.projetointegrador.domain.services.PessoaService;
+import br.com.projetointegrador.projetointegrador.domain.services.PessoaTrabalhaEmAtividadeService;
 import br.com.projetointegrador.projetointegrador.domain.services.ProjetoService;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.AtividadePersistenceAdapter;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.PessoaPersistenceAdapter;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.PessoaTrabalhaEmAtividadeAdapter;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.ProjetoPersistenceAdapter;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.PessoaTrabalhaEmAtividade.PessoaTrabalhaEmAtividadeMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.atividade.AtividadePersistenceMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto.ProjetoPersistenceMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.AtividadeRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.PessoaRepository;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.PessoaTrabalhaEmAtividadeRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.ProjetoRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.administrador.AdministradorCriaAtividadeRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.administrador.AdministradorCriaProjetoRepository;
@@ -62,6 +66,21 @@ public class BeanConfiguration {
     }
 
     @Bean
+    public PessoaTrabalhaEmAtividadeAdapter pessoaTrabalhaEmAtividadeAdapter(
+            PessoaTrabalhaEmAtividadeRepository pessoaTrabalhaEmAtividadeRepository,
+            PessoaRepository pessoaRepository,
+            AtividadeRepository atividadeRepository,
+            PessoaTrabalhaEmAtividadeMapper pessoaTrabalhaEmAtividadeMapper
+    ){
+        return new PessoaTrabalhaEmAtividadeAdapter(
+                pessoaTrabalhaEmAtividadeRepository,
+                pessoaRepository,
+                atividadeRepository,
+                pessoaTrabalhaEmAtividadeMapper
+        );
+    }
+
+    @Bean
     public PessoaPersistenceAdapter pessoaPersistenceAdapter(PessoaRepository pessoaRepository , PessoaPersistenceMapper pessoaPersistenceMapper){
         return new PessoaPersistenceAdapter(pessoaRepository , pessoaPersistenceMapper);
     }
@@ -80,4 +99,10 @@ public class BeanConfiguration {
     public PessoaService pessoaService(PessoaPersistenceAdapter pessoaPersistenceAdapter){
         return new PessoaService(pessoaPersistenceAdapter);
     }
+
+    @Bean
+    public PessoaTrabalhaEmAtividadeService pessoaTrabalhaEmAtividadeService(PessoaTrabalhaEmAtividadeAdapter pessoaTrabalhaEmAtividadeAdapter){
+        return new PessoaTrabalhaEmAtividadeService(pessoaTrabalhaEmAtividadeAdapter);
+    }
+
 }

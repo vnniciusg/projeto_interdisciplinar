@@ -3,7 +3,9 @@ import Erro from "components/Erro";
 import Input from "components/Input";
 import Subtitle from "components/Subtitle";
 import Title from "components/Title";
+import LoginContext from "contexts/AuthContext";
 import { Login } from "models/DTOs";
+import React from "react";
 import { useForm, Controller } from "react-hook-form";
 
 const SignIn = () => {
@@ -13,8 +15,9 @@ const SignIn = () => {
       pSenha: "",
     },
   });
-  const enviarLogin = (data: Login) => {
-    console.log(data);
+  const {login} = React.useContext(LoginContext)
+  const doLogin = (data: Login) => {
+    login(data);
   };
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[200px] w-[95%] sm:w-[70%] md:w-1/3 lg:w-[300px] flex flex-col gap-y-4">
@@ -23,7 +26,7 @@ const SignIn = () => {
         <Subtitle message="Faça o login agora" />
       </div>
       <form
-        onSubmit={handleSubmit(enviarLogin)}
+        onSubmit={handleSubmit(doLogin)}
         className="self-center flex flex-col gap-y-2 w-full"
       >
         <Controller

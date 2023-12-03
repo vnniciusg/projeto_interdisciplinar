@@ -45,3 +45,13 @@ export type RecuperaAtividade = {
     aTipo: TipoAtividade
     pNome: string
 }
+
+export type PayloadUsuario = {
+    pid: number;
+    pnome: string;
+    ptipo: TipoPessoa
+}
+
+export type PayloadToken = {
+    token: string;
+}
