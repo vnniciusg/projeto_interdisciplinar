@@ -1,7 +1,6 @@
 package br.com.projetointegrador.projetointegrador.domain.model;
 
 
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 
 public class Projeto {

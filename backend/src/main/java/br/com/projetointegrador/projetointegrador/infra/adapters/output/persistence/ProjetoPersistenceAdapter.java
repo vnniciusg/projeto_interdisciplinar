@@ -1,16 +1,12 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence;
 
 import br.com.projetointegrador.projetointegrador.application.ports.output.ProjetoOutputPort;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
-import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
+import br.com.projetointegrador.projetointegrador.application.dto.projeto.request.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.TipoPessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
-import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.AtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.ProjetoEntity;
-import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.administrador.AdministradorCriaAtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.administrador.AdministradorCriaProjetoEntity;
-import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.coordenador.CoordenadorCriaAtivadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.coordenador.CoordenadorCriaProjetoEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto.ProjetoPersistenceMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.PessoaRepository;

@@ -1,9 +1,8 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence;
 
 import br.com.projetointegrador.projetointegrador.application.ports.output.AtividadeOutputPort;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarAtividadeRequestDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.atividade.request.CriarAtividadeRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Atividade.Atividade;
-import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.TipoPessoa;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.AtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
@@ -21,6 +20,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class AtividadePersistenceAdapter implements AtividadeOutputPort {
@@ -72,6 +72,26 @@ public class AtividadePersistenceAdapter implements AtividadeOutputPort {
             return atividadePersistenceMapper.toAtividades(atividadeRepository.findAll());
         }catch (Exception e){
             throw new RuntimeException("Algo inesperado ocorreu ao listar atividade : " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Atividade> listarAtividadesPorPessoaCadastra(Long id) {
+        try{
+            Optional<PessoaEntity> pessoaEntityOptional = pessoaRepository.findById(id);
+
+            PessoaEntity pessoaEntity = pessoaEntityOptional.orElseThrow(() ->
+                new IllegalArgumentException("Não foi encontrada pessoa com ID : " + id)
+            );
+            List<AtividadeEntity> atividadeEntity = atividadeRepository.findByaPessoaCadastra(pessoaEntity);
+
+            return atividadeEntity
+                    .stream()
+                    .filter(atividade-> atividade.getAPessoaCadastra() != null )
+                    .map(atividadePersistenceMapper::toAtividade)
+                    .collect(Collectors.toList());
+        }catch (Exception e){
+            throw new RuntimeException("Algo inesperado ocorreu ao listar atividades do cadastrante : " +e.getMessage());
         }
     }
 

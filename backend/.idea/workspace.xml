@@ -4,10 +4,55 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="fix : alterações em criarPessoa e listarProjetosmapper">
+    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="hot fix : CriarProjetoRequestDTO getPrObjetiv">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/atividade/response/ListarAtividadesDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/atividade/AtividadeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/atividade/AtividadeMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/SecurityConfigurations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/config/SecurityConfigurations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/security/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/security/SecurityFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/AtividadeUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/AtividadeUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/ProjetoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/ProjetoUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/AtividadeOutputPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/AtividadeOutputPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaOutputPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaOutputPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/ProjetoOutputPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/ProjetoOutputPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/CriarAtividadeRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/atividade/request/CriarAtividadeRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/pessoa/request/CriarPessoaRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/CriarProjetoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/projeto/request/CriarProjetoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/projeto/response/ListarProjetosResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/dto/LoginDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/dto/auth/request/LoginRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Atividade/Atividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Atividade/Atividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Projeto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/model/Projeto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/PessoaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/PessoaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/ProjetoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/ProjetoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/AtividadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/AtividadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/Pessoa/PessoaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/Pessoa/PessoaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/ProjetoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/ProjetoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/mapper/projeto/ProjetoMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/AtividadePersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/AtividadePersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaPersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/ProjetoPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/ProjetoPersistenceAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/atividade/AtividadePersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/atividade/AtividadePersistenceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/atividade/AtividadePersistenceMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/atividade/AtividadePersistenceMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/AtividadeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/AtividadeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/AtividadeUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/AtividadeUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/ProjetoUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/input/ProjetoUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/AtividadeOutputPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/AtividadeOutputPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaOutputPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaOutputPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/ProjetoOutputPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/application/ports/output/ProjetoOutputPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarAtividadeRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarPessoaDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/CriarProjetoRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/dto/ListarProjetosResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/model/Projeto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/model/Projeto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/AtividadeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/PessoaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/PessoaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/ProjetoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/domain/services/ProjetoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/projeto/ProjetoPersistenceMapper.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +90,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "vinnicius",
-    "last_opened_file_path": "/home/vnn/Documents/GitHub/projeto_interdisciplinar/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;vinnicius&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/vnn/Documents/GitHub/projeto_interdisciplinar/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="br.com.projetointegrador.projetointegrador.domain.dto" />
@@ -88,6 +133,8 @@
       <updated>1701446848351</updated>
       <workItem from="1701521051502" duration="8170000" />
       <workItem from="1701547926550" duration="7286000" />
+      <workItem from="1701572987561" duration="1685000" />
+      <workItem from="1701575555293" duration="4775000" />
     </task>
     <task id="LOCAL-00001" summary="feat : adição de spring boot security , token e spring doc">
       <option name="closed" value="true" />
@@ -129,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701555069945</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="hot fix : CriarProjetoRequestDTO getPrObjetiv">
+      <option name="closed" value="true" />
+      <created>1701560075310</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701560075310</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +207,7 @@
     <MESSAGE value="feat : criação dos DTO para request de atividade e projeto" />
     <MESSAGE value="fix : misc.xml" />
     <MESSAGE value="fix : alterações em criarPessoa e listarProjetosmapper" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix : alterações em criarPessoa e listarProjetosmapper" />
+    <MESSAGE value="hot fix : CriarProjetoRequestDTO getPrObjetiv" />
+    <option name="LAST_COMMIT_MESSAGE" value="hot fix : CriarProjetoRequestDTO getPrObjetiv" />
   </component>
 </project>

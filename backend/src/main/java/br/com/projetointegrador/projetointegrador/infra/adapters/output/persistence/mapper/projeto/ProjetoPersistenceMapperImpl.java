@@ -1,10 +1,9 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto;
 
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarProjetoRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.ProjetoEntity;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,14 +13,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProjetoPersistenceMapperImpl implements ProjetoPersistenceMapper {
 
-    private final ModelMapper modelMapper;
-    @Override
-    public ProjetoEntity toProjetoEntity(CriarProjetoRequestDTO criarProjetoRequestDTO) {
-        return modelMapper.map(criarProjetoRequestDTO, ProjetoEntity.class);
-    }
+    private final PessoaPersistenceMapper pessoaPersistenceMapper;
     @Override
     public Projeto toProjeto(ProjetoEntity projetoEntity) {
-        return modelMapper.map(projetoEntity , Projeto.class);
+        Projeto projeto = new Projeto();
+        projeto.setPrId(projetoEntity.getPrId());
+        projeto.setPrNome(projetoEntity.getPrNome());
+        projeto.setPrObjetivo(projetoEntity.getPrObjetivo());
+        projeto.setPrRecursos(projetoEntity.getPrRecursos());
+        projeto.setPrPessoaCadastra(pessoaPersistenceMapper.toPessoa(projetoEntity.getPrPessoaCadastra()));
+        if (projetoEntity.getPrPessoaCadastra() !=  null){
+            projeto.setPrPessoaCoordena(pessoaPersistenceMapper.toPessoa(projetoEntity.getPrPessoaCoordena()));
+        }
+        return projeto;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package br.com.projetointegrador.projetointegrador.domain.dto;
+package br.com.projetointegrador.projetointegrador.application.dto.atividade.response;
 
 import br.com.projetointegrador.projetointegrador.domain.model.Atividade.TipoAtividade;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,16 +11,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CriarAtividadeRequestDTO {
-    @JsonProperty("aIdProjeto")
-    private Long aIdProjeto;
-
+public class ListarAtividadesDTO {
+    @JsonProperty("aId")
+    private Long aId;
+    @JsonProperty("prId")
+    private Long prId;
+    @JsonProperty("prNome")
+    private String prNome;
     @JsonProperty("aDescricao")
     private String aDescricao;
-
     @JsonProperty("aTipo")
     private TipoAtividade aTipo;
-
-    @JsonProperty("aIdPessoaCadastra")
-    private Long aIdPessoaCadastra;
+    @JsonProperty("pNome")
+    private String pNome;
 }
