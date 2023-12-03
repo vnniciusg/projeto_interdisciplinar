@@ -36,3 +36,12 @@ export type RecuperaProjeto = {
     prId: number;
     prNome: string;
 }
+
+export type RecuperaAtividade = {
+    aId: number;
+    prId: number;
+    prNome: string
+    aDescricao: string
+    aTipo: TipoAtividade
+    pNome: string
+}

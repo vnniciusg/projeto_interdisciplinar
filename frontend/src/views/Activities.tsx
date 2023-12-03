@@ -15,12 +15,14 @@ import {
 import "react-tabs/style/react-tabs.css";
 import Title from "components/Title";
 import { useForm, Controller } from "react-hook-form";
-import { CadastroAtividade, RecuperaProjeto } from "models/DTOs";
+import { CadastroAtividade, RecuperaAtividade, RecuperaProjeto } from "models/DTOs";
 import { TipoAtividade } from "models/Atividade";
 import Button from "components/Button";
 import Select from "components/Select";
 import Erro from "components/Erro";
-import { CreateNewActivity, GetAvailableProjects } from "services/Api";
+import { CreateNewActivity, GetAllActivities, GetAvailableProjects } from "services/Api";
+import Card from "components/Card";
+import SearchInput from "components/SearchInput";
 
 const CustomTab: ReactTabsFunctionComponent<TabProps> = ({
   children,
@@ -52,19 +54,21 @@ CustomPanel.tabsRole = "TabPanel";
 CustomTab.tabsRole = "Tab";
 
 const Atividades = () => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [availableProjects, setAvailableProjects] = React.useState<RecuperaProjeto[]>([]);
+  const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>([]);
+  const [acitivitySearch, setActivitySearch] = React.useState<string>("");
   React.useEffect(() => {
-    Promise.resolve(
+    Promise.all([
       GetAvailableProjects(
         "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA"
-      )
-        .then((res) => setAvailableProjects(res.data))
-        .catch((err) => console.log(err))
-    );
-  }, []);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [availableProjects, setAvailableProjects] = React.useState<
-    RecuperaProjeto[]
-  >([]);
+      ),
+      GetAllActivities("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1MDMiLCJpc3MiOiJ0ZXN0ZSIsImV4cCI6MTcwMTU4NjkzOX0.JpRCp3nD__0NoENEKPhnY7X223zxDOSGsPVyzPCFCuA")
+      ]).then((responses) => {
+        setAvailableProjects(responses[0].data);
+        setAllActivities(responses[1].data);
+      }).catch((errs) => console.log(errs));
+    }, []);
   const [tabIndex, setTabIndex] = React.useState<number>(0);
   const { control, handleSubmit } = useForm<CadastroAtividade>({
     defaultValues: {
@@ -147,7 +151,7 @@ const Atividades = () => {
                     value={value}
                     onChange={onChange}
                     id={name}
-                    className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm"
+                    className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm uppercase"
                   >
                     {availableProjects.map((proj) => (
                       <option key={proj.prId} value={proj.prId}>
@@ -234,7 +238,27 @@ const Atividades = () => {
         </CustomPanel>
         <CustomPanel>2</CustomPanel>
         <CustomPanel>3</CustomPanel>
-        <CustomPanel>4</CustomPanel>
+        <CustomPanel>
+          <div className="flex flex-col gap-y-4">
+              <Title message="Aqui você consegue ver todas as atividades, disponíveis ou não" />
+              <div className="w-full md:w-[70%]">
+              <SearchInput
+                label="Busque por uma atividade especifica"
+                hasText={acitivitySearch.length > 0}
+                value={acitivitySearch}
+                onChange={(e) => setActivitySearch(e.target.value)}
+                placeholder="Pesquise pela descrição..."
+                type="text"
+                onClick={() => setActivitySearch("")}
+              />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
+                {allActivities.map((act, index) => (
+                  <Card activity={act} key={index} />
+                ))}
+              </div>
+          </div>
+        </CustomPanel>
       </Tabs>
       <div></div>
     </>

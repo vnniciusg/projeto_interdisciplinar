@@ -16,3 +16,11 @@ export const CreateNewActivity = async (token: string, data: CadastroAtividade) 
         }
     })
 }
+
+export const GetAllActivities = async (token: string) => {
+    return axios.get("https://projetointerdisciplinar-production.up.railway.app/api/v1/atividades", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
