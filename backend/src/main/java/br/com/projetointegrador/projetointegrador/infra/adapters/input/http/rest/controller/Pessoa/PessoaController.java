@@ -1,9 +1,11 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.controller.Pessoa;
 
+import br.com.projetointegrador.projetointegrador.application.dto.pessoa.response.ListarPessoaResponseDTO;
 import br.com.projetointegrador.projetointegrador.application.ports.input.PessoaUseCase;
 import br.com.projetointegrador.projetointegrador.application.dto.pessoa.request.CriarPessoaRequestDTO;
 import br.com.projetointegrador.projetointegrador.application.dto.auth.request.LoginRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
+import br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.mapper.pessoa.PessoaMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.token.TokenJWTData;
@@ -28,8 +30,7 @@ public class PessoaController {
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager manager;
-    private final PessoaPersistenceMapper pessoaPersistenceMapper;
-
+    private final PessoaMapper pessoaMapper;
 
     @Transactional
     @PostMapping
@@ -88,5 +89,17 @@ public class PessoaController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
+    }
+
+    @GetMapping("/me/pessoa")
+    public ResponseEntity<?> listarPessoa(@RequestHeader("Authorization") String token){
+        try{
+            Long pessoaId = tokenService.extractIdAndConvertToNumber(token);
+            Pessoa pessoa = pessoaUseCase.listarPessoa(pessoaId);
+            ListarPessoaResponseDTO responseDTO = pessoaMapper.toListarPessoaResponse(pessoa);
+            return ResponseEntity.ok().body(responseDTO);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

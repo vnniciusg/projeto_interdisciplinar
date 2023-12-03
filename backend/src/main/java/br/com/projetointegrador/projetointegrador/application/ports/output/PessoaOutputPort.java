@@ -10,7 +10,8 @@ public interface PessoaOutputPort {
     Pessoa criarPessoa(CriarPessoaRequestDTO criarPessoaRequestDTO);
     List<Pessoa> list();
     Boolean delete(Long pessoa_id);
-
     Pessoa update(Pessoa pessoa);
+
+    Pessoa listarPessoa(Long pessoaId);
 
 }

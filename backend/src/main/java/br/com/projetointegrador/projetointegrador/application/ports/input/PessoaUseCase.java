@@ -11,5 +11,7 @@ public interface PessoaUseCase {
     Boolean deletarPessoa(Long pessoaId);
     Pessoa atualizarPessoa(Pessoa pessoa);
 
+    Pessoa listarPessoa(Long pessoaId);
+
 
 }

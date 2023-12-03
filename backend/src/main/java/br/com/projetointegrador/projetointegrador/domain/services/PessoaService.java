@@ -35,4 +35,9 @@ public class PessoaService implements PessoaUseCase {
     public Pessoa atualizarPessoa(Pessoa pessoa) {
         return pessoaOutputPort.update(pessoa);
     }
+
+    @Override
+    public Pessoa listarPessoa(Long pessoaId) {
+        return pessoaOutputPort.listarPessoa(pessoaId);
+    }
 }

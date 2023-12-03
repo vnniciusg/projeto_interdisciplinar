@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class PessoaPersistenceAdapter implements PessoaOutputPort {
@@ -79,5 +80,20 @@ public class PessoaPersistenceAdapter implements PessoaOutputPort {
         pessoaEntity.setPDataCriacao(new Date());
         pessoaEntity = pessoaRepository.save(pessoaEntity);
         return pessoaPersistenceMapper.toPessoa(pessoaEntity);
+    }
+
+    @Override
+    public Pessoa listarPessoa(Long pessoaId) {
+        try{
+            Optional<PessoaEntity> pessoaEntityOptional = pessoaRepository.findById(pessoaId);
+
+            PessoaEntity pessoaEntity = pessoaEntityOptional.orElseThrow(() ->
+                    new IllegalArgumentException("Não existe pessoa com id : " + pessoaId )
+            );
+
+            return pessoaPersistenceMapper.toPessoa(pessoaEntity);
+        }catch (Exception e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 }
