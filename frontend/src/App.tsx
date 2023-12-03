@@ -30,7 +30,7 @@ function App() {
                 <Route path="login" Component={Login} />
                 <Route path="registro" Component={Registro} />
                 <Route path="atividades" Component={Atividades} />
-                <Route path="projeto" Component={Projetos} />
+                <Route path="projetos" Component={Projetos} />
               </Routes>
             </div>
             <Footer isShown={showNavAndFooter} />
