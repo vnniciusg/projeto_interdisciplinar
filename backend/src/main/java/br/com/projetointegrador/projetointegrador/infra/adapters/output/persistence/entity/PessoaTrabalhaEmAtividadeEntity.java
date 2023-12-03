@@ -14,7 +14,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PessoaTabalhaEmAtividadeEntity {
+public class PessoaTrabalhaEmAtividadeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long ptaId;
