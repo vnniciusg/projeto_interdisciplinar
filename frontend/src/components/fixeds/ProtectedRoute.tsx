@@ -11,4 +11,8 @@ const ProtectedRoute = () =>{
 }
 }
 
+<<<<<<< Updated upstream
 export default ProtectedRoute;
+=======
+export default ProtectedRoute;
+>>>>>>> Stashed changes
