@@ -1,8 +1,10 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.controller;
 
 import br.com.projetointegrador.projetointegrador.application.ports.input.AtividadeUseCase;
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarAtividadeRequestDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.atividade.request.CriarAtividadeRequestDTO;
+import br.com.projetointegrador.projetointegrador.application.dto.atividade.response.ListarAtividadesDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Atividade.Atividade;
+import br.com.projetointegrador.projetointegrador.infra.adapters.input.http.rest.mapper.atividade.AtividadeMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.token.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ public class AtividadeController {
 
     private final AtividadeUseCase atividadeUseCase;
     private final TokenService tokenService;
+    private final AtividadeMapper atividadeMapper;
 
     @Transactional
     @PostMapping
@@ -38,9 +41,30 @@ public class AtividadeController {
     public ResponseEntity<?> listarAtiidades(){
         try{
             List<Atividade> atividades = atividadeUseCase.listarAtividades();
-            return ResponseEntity.ok().body(atividades);
+            if (atividades.isEmpty()){
+                return ResponseEntity.noContent().build();
+            }else{
+                List<ListarAtividadesDTO> responseDTOS = atividadeMapper.toListarAtividadesDTO(atividades);
+                return ResponseEntity.ok().body(responseDTOS);
+            }
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Erro ao listar atividades : " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/me/atividades")
+    public ResponseEntity<?> listarAtividadesPorPessoaCadastra(@RequestHeader("Authorization") String token ){
+        try{
+            Long id = tokenService.extractIdAndConvertToNumber(token);
+            List<Atividade> atividades = atividadeUseCase.listarAtividadesPorPessoaCadastra(id);
+            if (atividades.isEmpty()){
+                return ResponseEntity.noContent().build();
+            }else{
+                List<ListarAtividadesDTO> responseDTOS = atividadeMapper.toListarAtividadesDTO(atividades);
+                return ResponseEntity.ok().body(responseDTOS);
+            }
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }

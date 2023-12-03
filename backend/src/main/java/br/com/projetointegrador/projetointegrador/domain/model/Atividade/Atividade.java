@@ -1,8 +1,8 @@
 package br.com.projetointegrador.projetointegrador.domain.model.Atividade;
 
-import br.com.projetointegrador.projetointegrador.domain.dto.CriarAtividadeRequestDTO;
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import br.com.projetointegrador.projetointegrador.domain.model.Projeto;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 
 public class Atividade {
     private Long aId;
