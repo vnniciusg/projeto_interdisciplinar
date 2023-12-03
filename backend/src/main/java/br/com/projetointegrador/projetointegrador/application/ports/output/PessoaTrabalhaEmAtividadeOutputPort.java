@@ -1,4 +1,8 @@
 package br.com.projetointegrador.projetointegrador.application.ports.output;
 
+import br.com.projetointegrador.projetointegrador.application.dto.pessoaTrabalhaEmAtividade.request.CreatePessoaTrabalhaEmAtividadeDTO;
+import br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade;
+
 public interface PessoaTrabalhaEmAtividadeOutputPort {
+    PessoaTrabalhaEmAtividade criarPessoaTrabalhaEmAtividade(CreatePessoaTrabalhaEmAtividadeDTO createPessoaTrabalhaEmAtividadeDTO);
 }
