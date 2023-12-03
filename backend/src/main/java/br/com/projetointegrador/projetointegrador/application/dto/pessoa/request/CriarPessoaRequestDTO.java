@@ -1,4 +1,4 @@
-package br.com.projetointegrador.projetointegrador.domain.dto;
+package br.com.projetointegrador.projetointegrador.application.dto.pessoa.request;
 
 import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-public class CriarPessoaDTO {
+public class CriarPessoaRequestDTO {
     @JsonProperty("pRG")
     private String pRG;
 

@@ -1,4 +1,4 @@
-package br.com.projetointegrador.projetointegrador.domain.dto;
+package br.com.projetointegrador.projetointegrador.application.dto.projeto.request;
 
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
