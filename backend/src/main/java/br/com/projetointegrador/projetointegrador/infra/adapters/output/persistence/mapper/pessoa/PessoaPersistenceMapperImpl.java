@@ -36,6 +36,7 @@ public class PessoaPersistenceMapperImpl implements PessoaPersistenceMapper {
         pessoaEntity.setPEmail(pessoa.getpEmail());
         pessoaEntity.setPSenha(pessoa.getpSenha());
         pessoaEntity.setPNome(pessoa.getpNome());
+        pessoaEntity.setPTipo(pessoa.getpTipo());
         pessoaEntity.setPNomeMae(pessoa.getpNomeMae());
         pessoaEntity.setPNomePai(pessoa.getpNomePai());
         pessoaEntity.setPPessoaCadastra(toPessoaEntity(pessoa.getpPessoaCadastra(), converted));
@@ -58,6 +59,7 @@ public class PessoaPersistenceMapperImpl implements PessoaPersistenceMapper {
         Pessoa pessoa = new Pessoa();
         pessoa.setpID(pessoaEntity.getPID());
         pessoa.setpRG(pessoaEntity.getPRG());
+        pessoa.setpTipo(pessoaEntity.getPTipo());
         pessoa.setpCpf(pessoaEntity.getPCpf());
         pessoa.setpEmail(pessoaEntity.getPEmail());
         pessoa.setpSenha(pessoaEntity.getPSenha());
