@@ -60,8 +60,10 @@ public class PessoaTrabalhaEmAtividadeAdapter implements PessoaTrabalhaEmAtivida
        }
     }
 
-    public List<PessoaTrabalhaEmAtividade> list(){
+    @Override
+    public List<PessoaTrabalhaEmAtividade> listarPessoaTrabalhaEmAtividade() {
         List<PessoaTrabalhaEmAtividadeEntity> pessoaTrabalhaEmAtividadeEntities = pessoaTrabalhaEmAtividadeRepository.findAll();
         return pessoaTrabalhaEmAtividadeMapper.toPessoaTabalhaEmAtividades(pessoaTrabalhaEmAtividadeEntities);
     }
+
 }
