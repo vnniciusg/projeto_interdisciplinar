@@ -24,6 +24,14 @@ export type CadastroProjeto = {
     prNome: string;
     prRecursos: string;
     prObjetivo: string;
+    prIdPessoaCoordena: number,
+}
+
+export type CadastraAtividadePessoa = {
+    ptaIdAtividade: number,
+    ptaIdPessoa: number,
+    ptpDataInicio: string,
+    ptpDataFim: string,
 }
 
 export type CadastroAtividade = {

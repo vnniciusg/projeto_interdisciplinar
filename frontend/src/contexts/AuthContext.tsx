@@ -11,7 +11,7 @@ interface LoginContextProvider {
 
 interface LoginContext {
   userPayload?: PayloadUsuario;
-  userToken?: PayloadToken;
+  userToken?: string;
   login: (data: Login) => void;
   logout: () => void;
   isLoggedIn: () => boolean;
@@ -30,7 +30,7 @@ const LoginContext = React.createContext<LoginContext>({
     ptipo: TipoPessoa.ESTAGIÁRIO,
     pid: 0,
   } as PayloadUsuario,
-  userToken: { token: "" } as PayloadToken,
+  userToken:"",
   isLoading: false,
 });
 
@@ -38,7 +38,7 @@ const LoginContextProvider: React.FC<LoginContextProvider> = ({ children }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [userPayload, setUserPayload] = React.useState<PayloadUsuario>();
-  const [userToken, setUserTokoen] = React.useState<PayloadToken>();
+  const [userToken, setUserToken] = React.useState<string>("");
 
   const login = (data: Login) => {
     Promise.resolve(
@@ -46,13 +46,8 @@ const LoginContextProvider: React.FC<LoginContextProvider> = ({ children }) => {
         .then((res: AxiosResponse<PayloadToken>) => {
           const { token } = res.data;
           setIsLoading(false);
-          setUserTokoen((prevState: PayloadToken | undefined) => {
-            if (!prevState) {
-              return { token };
-            }
-            return { ...prevState, token };
-          });
-          localStorage.setItem("userToken", JSON.stringify(token));
+          setUserToken(token);
+          localStorage.setItem("userToken", token);
           navigate("/");
         })
         .catch((err) => {
@@ -61,12 +56,13 @@ const LoginContextProvider: React.FC<LoginContextProvider> = ({ children }) => {
     );
   };
   React.useEffect(() => {
-    if (userToken?.token) {
+    const userToken = localStorage.getItem("userToken");
+    if (userToken) {
+      setUserToken(userToken);
       Promise.resolve(
-        GetUserPayloadByToken(userToken?.token).then(
+        GetUserPayloadByToken(userToken).then(
           (res: AxiosResponse<PayloadUsuario>) => {
             const userPayload = res.data;
-            console.log(res);
             setUserPayload(userPayload);
             localStorage.setItem("userPayload", JSON.stringify(userPayload));
           }

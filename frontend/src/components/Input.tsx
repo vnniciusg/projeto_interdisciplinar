@@ -6,7 +6,7 @@ interface InputProps {
   label?: string;
   disabled?: boolean;
   type: React.HTMLInputTypeAttribute;
-  value?: string | ReadonlyArray<string> | number | undefined;
+  value?: string | ReadonlyArray<string> | number | undefined ;
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   placeholder?: string | undefined;
 }

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { CadastroAtividade, Login } from "models/DTOs";
+import { CadastroAtividade, Login , CadastraAtividadePessoa} from "models/DTOs";
 import { CadastroProjeto } from "models/DTOs";
 
 
@@ -32,7 +32,7 @@ export const GetAllActivities = async (token: string) => {
         headers: {
             Authorization: `Bearer ${token}`
         }
-    })  ;
+    });
 }
 
 export const PerformLogin = async (data: Login) => {
@@ -45,4 +45,36 @@ export const GetUserPayloadByToken = async (token: string) => {
             Authorization: `Bearer ${token}`
         }
     });
+}
+
+export const PerformActivityToPerson = async (data: CadastraAtividadePessoa, token: string) => {
+    return axios.post("https://projetointerdisciplinar-production.up.railway.app/api/v1/pessoaAtividades", data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+export const GetSelfRegisteredActivities = async (token: string) => {
+    return axios.get("https://projetointerdisciplinar-production.up.railway.app/api/v1/atividades/me/atividades", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+export const GetDoingActivities = async (token: string) => {
+    return axios.get("https://projetointerdisciplinar-production.up.railway.app/api/v1/pessoaAtividades", {
+        headers:{ 
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+export const GetEveryone = async (token: string) => {
+    return axios.get("https://projetointerdisciplinar-production.up.railway.app/api/v1/pessoas", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }

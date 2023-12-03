@@ -32,10 +32,10 @@ export type CoordenadorCriaAtividade = {
     ccaIdAtividade?: Atividade[]
 }
 
-export type PessoaTrabalhaProjeto = {
-    ptpId: number;
-    ptpIdPessoa?: Pessoa;
-    ptpIdProjeto?: Projeto;
+export type PessoaTrabalhaAtividade = {
+    ptaId: number;
+    ptaPessoa?: Pessoa;
+    ptaAtividade?: Atividade;
     ptpDataInicio: Date;
     ptpDataFim: Date;
 }
