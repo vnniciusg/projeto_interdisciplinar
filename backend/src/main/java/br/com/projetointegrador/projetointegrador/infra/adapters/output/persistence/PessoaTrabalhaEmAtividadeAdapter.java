@@ -5,7 +5,7 @@ import br.com.projetointegrador.projetointegrador.application.ports.output.Pesso
 import br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.AtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaEntity;
-import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaTabalhaEmAtividadeEntity;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.PessoaTrabalhaEmAtividadeEntity;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.PessoaTrabalhaEmAtividade.PessoaTrabalhaEmAtividadeMapper;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.AtividadeRepository;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.repository.PessoaRepository;
@@ -13,6 +13,7 @@ import br.com.projetointegrador.projetointegrador.infra.adapters.output.persiste
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -30,7 +31,7 @@ public class PessoaTrabalhaEmAtividadeAdapter implements PessoaTrabalhaEmAtivida
            Optional<PessoaEntity> pessoaEntityOptional = pessoaRepository.findById(ptaIDPessoa);
 
            PessoaEntity pessoaEntity = pessoaEntityOptional.orElseThrow(() ->
-                   new IllegalArgumentException("ID PESSOA NÃO ENCCONTRADO"));
+                   new IllegalArgumentException("ID PESSOA NÃO ENCONTRADO"));
 
 
            Long ptaIDAtividade = createPessoaTrabalhaEmAtividadeDTO.getPtaIdAtividade();
@@ -41,14 +42,14 @@ public class PessoaTrabalhaEmAtividadeAdapter implements PessoaTrabalhaEmAtivida
                    new IllegalArgumentException("ID ATIVIDADE NAO FOI ENCONTRADO")
            );
 
-           PessoaTabalhaEmAtividadeEntity pessoaTabalhaEmAtividadeEntity = new PessoaTabalhaEmAtividadeEntity();
+           PessoaTrabalhaEmAtividadeEntity pessoaTrabalhaEmAtividadeEntity = new PessoaTrabalhaEmAtividadeEntity();
 
-           pessoaTabalhaEmAtividadeEntity.setPtaPessoa(pessoaEntity);
-           pessoaTabalhaEmAtividadeEntity.setPtaAtividade(atividadeEntity);
-           pessoaTabalhaEmAtividadeEntity.setPtpDataFim(createPessoaTrabalhaEmAtividadeDTO.getPtpDataFim());
-           pessoaTabalhaEmAtividadeEntity.setPtpDataInicio(createPessoaTrabalhaEmAtividadeDTO.getPtpDataInicio());
+           pessoaTrabalhaEmAtividadeEntity.setPtaPessoa(pessoaEntity);
+           pessoaTrabalhaEmAtividadeEntity.setPtaAtividade(atividadeEntity);
+           pessoaTrabalhaEmAtividadeEntity.setPtpDataFim(createPessoaTrabalhaEmAtividadeDTO.getPtpDataFim());
+           pessoaTrabalhaEmAtividadeEntity.setPtpDataInicio(createPessoaTrabalhaEmAtividadeDTO.getPtpDataInicio());
 
-           PessoaTabalhaEmAtividadeEntity pessoaTabalhaEmAtividadeResult = pessoaTrabalhaEmAtividadeRepository.save(pessoaTabalhaEmAtividadeEntity);
+           PessoaTrabalhaEmAtividadeEntity pessoaTabalhaEmAtividadeResult = pessoaTrabalhaEmAtividadeRepository.save(pessoaTrabalhaEmAtividadeEntity);
 
            return pessoaTrabalhaEmAtividadeMapper.toPessoaTrabalhaEmAtividade(pessoaTabalhaEmAtividadeResult);
 
@@ -57,5 +58,10 @@ public class PessoaTrabalhaEmAtividadeAdapter implements PessoaTrabalhaEmAtivida
        }catch (Exception e){
            throw new RuntimeException(e.getMessage());
        }
+    }
+
+    public List<PessoaTrabalhaEmAtividade> list(){
+        List<PessoaTrabalhaEmAtividadeEntity> pessoaTrabalhaEmAtividadeEntities = pessoaTrabalhaEmAtividadeRepository.findAll();
+        return pessoaTrabalhaEmAtividadeMapper.toPessoaTabalhaEmAtividades(pessoaTrabalhaEmAtividadeEntities);
     }
 }

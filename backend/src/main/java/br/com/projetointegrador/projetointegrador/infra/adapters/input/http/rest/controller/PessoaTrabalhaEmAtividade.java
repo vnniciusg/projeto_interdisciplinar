@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pessoaAtividades")
@@ -33,5 +36,14 @@ public class PessoaTrabalhaEmAtividade {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<?> listarPessoaTrabalhaEmAtividade(){
+        try {
+            List<br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade> pessoasTrabalhaEmAtividade = pessoaTrabalhaEmAtividadeUseCase.listarPessoaTrabalhaEmAtividade();
+            return ResponseEntity.status(HttpStatus.OK).body(pessoasTrabalhaEmAtividade);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
 }

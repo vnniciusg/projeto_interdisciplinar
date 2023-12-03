@@ -6,6 +6,8 @@ import br.com.projetointegrador.projetointegrador.application.ports.output.Pesso
 import br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class PessoaTrabalhaEmAtividadeService implements PessoaTrabalhaEmAtividadeUseCase {
 
@@ -15,8 +17,8 @@ public class PessoaTrabalhaEmAtividadeService implements PessoaTrabalhaEmAtivida
     public PessoaTrabalhaEmAtividade criarPessoaTrabalhaEmAtividade(CreatePessoaTrabalhaEmAtividadeDTO createPessoaTrabalhaEmAtividadeDTO) {
         return pessoaTrabalhaEmAtividadeOutputPort.criarPessoaTrabalhaEmAtividade(createPessoaTrabalhaEmAtividadeDTO);
     }
-
-
+    @Override
+    public List<PessoaTrabalhaEmAtividade> listarPessoaTrabalhaEmAtividade(){return pessoaTrabalhaEmAtividadeOutputPort.listarPessoaTrabalhaEmAtividade();}
 
 
 }
