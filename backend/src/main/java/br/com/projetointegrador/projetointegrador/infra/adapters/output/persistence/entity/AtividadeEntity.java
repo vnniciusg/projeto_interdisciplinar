@@ -1,6 +1,7 @@
 package br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity;
 
-import br.com.projetointegrador.projetointegrador.domain.model.User;
+import br.com.projetointegrador.projetointegrador.domain.model.Atividade.TipoAtividade;
+import br.com.projetointegrador.projetointegrador.domain.model.Pessoa.Pessoa;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,19 +13,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class AtividadeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-
-    @Column(name = "projeto_id")
-    private UUID id_projeto;
-
-    private String descricao;
-    private String tipo;
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long aId;
     @ManyToOne
-    @JoinColumn(name = "pessoa_cadastra_id", referencedColumnName = "id")
-    private User id_pessoa_cadastra;
+    @JoinColumn(name = "projeto_id")
+    private ProjetoEntity aProjeto;
+    private String aDescricao;
+    private TipoAtividade aTipo;
+    @ManyToOne
+    @JoinColumn(name = "pessoa_cadastra_atividade_id")
+    private PessoaEntity aPessoaCadastra;
 }
