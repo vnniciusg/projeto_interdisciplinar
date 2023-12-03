@@ -1,7 +1,7 @@
 import Footer from "components/fixeds/Footer";
 import Header from "components/fixeds/Header";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 const Inicio = React.lazy(() => import("views/Home"));
 const Login = React.lazy(() => import("views/Login"))
 const Registro = React.lazy(() => import("views/SignUp"))
@@ -17,11 +17,9 @@ function App() {
       setShowNavAndFooter(true);
     }
   }, [])
-  console.log(showNavAndFooter)
   return (
     <>
       <React.Suspense>
-        <BrowserRouter>
           <div className="font-global">
             <Header isShown={showNavAndFooter} />
             <div className="w-[90%] mx-auto min-h-screen pt-[150px] text-text">
@@ -35,7 +33,6 @@ function App() {
             </div>
             <Footer isShown={showNavAndFooter} />
           </div>
-        </BrowserRouter>
       </React.Suspense>
     </>
   );

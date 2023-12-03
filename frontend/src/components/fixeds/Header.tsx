@@ -1,8 +1,11 @@
 import Link from "components/Link";
+import LoginContext from "contexts/AuthContext";
+import React from "react";
 interface HeaderProps {
   isShown: boolean;
 }
 const Header = ({ isShown }: HeaderProps) => {
+  const {isLoggedIn, logout} = React.useContext(LoginContext)
   return (
     <>
       {isShown && (
@@ -13,8 +16,14 @@ const Header = ({ isShown }: HeaderProps) => {
             <Link link="/" text="Início" target="_self" />
             <Link link="/atividades" text="Ver atividades" target="_self" />
             <Link link="/projetos" text="Ver projetos" target="_self" />
+          {!isLoggedIn() ? (
+            <>
             <Link link="/registro" text="Cadastro" target="_self" />
             <Link link="/login" text="Login" target="_self" />
+            </>
+          ) : (
+            <button className="bg-secondary px-4 py-2 rounded-lg text-white text-sm hover:bg-secondary/80 active:scale-[0.98] transition duration-300" onClick={() => logout()} >Logout</button>
+          )}
           </div>
         </nav>
       </header>

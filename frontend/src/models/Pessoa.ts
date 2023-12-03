@@ -24,7 +24,7 @@ export type Estagiario = {
 }
 
 export enum TipoPessoa {
-    ADMINISTRADOR = "Administrador",
-    COORDENADOR = "Coordenador",
-    ESTAGIÁRIO = "Estagiário"
+    ADMINISTRADOR = "ADMINISTRADOR",
+    COORDENADOR = "COORDENADOR",
+    ESTAGIÁRIO = "ESTAGIÁRIO"
 }
