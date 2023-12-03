@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="FEAT : CRIAÇÃO DAS PORTAS DE ENTRADA E SAIDA PARA PESSOA TRABALHA EM ATIVIDADE">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="fix : estava fazenddo o get em pessoa em vez de pessoaENtity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividadeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaTrabalhaEmAtividadeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaTrabalhaEmAtividadeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/pessoa/PessoaPersistenceMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/pessoa/PessoaPersistenceMapperImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +214,31 @@
       <option name="project" value="LOCAL" />
       <updated>1701613084508</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactor : renomeação do controller de pessoa trabalha em atividade">
+      <option name="closed" value="true" />
+      <created>1701630486289</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701630486289</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor : renomeação do controller de pessoa trabalha em atividade">
+      <option name="closed" value="true" />
+      <created>1701630495508</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701630495508</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fix : estava fazenddo o get em pessoa em vez de pessoaENtity">
+      <option name="closed" value="true" />
+      <created>1701630522838</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701630522838</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,6 +271,8 @@
     <MESSAGE value="FEAT : CRIAÇÃO DA ENTIDADE E DO MODELO DE PESSOA TRABALHA EM ATIVIDADE" />
     <MESSAGE value="FEAT : CRIAÇÃO DO REPOSITORIO DE PESSOA TRABALHA EM ATIVIDADE" />
     <MESSAGE value="FEAT : CRIAÇÃO DAS PORTAS DE ENTRADA E SAIDA PARA PESSOA TRABALHA EM ATIVIDADE" />
-    <option name="LAST_COMMIT_MESSAGE" value="FEAT : CRIAÇÃO DAS PORTAS DE ENTRADA E SAIDA PARA PESSOA TRABALHA EM ATIVIDADE" />
+    <MESSAGE value="refactor : renomeação do controller de pessoa trabalha em atividade" />
+    <MESSAGE value="fix : estava fazenddo o get em pessoa em vez de pessoaENtity" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : estava fazenddo o get em pessoa em vez de pessoaENtity" />
   </component>
 </project>
