@@ -7,15 +7,9 @@
     <list default="true" id="f242afe7-6544-43d3-9ebd-d595b2f0e85e" name="Changes" comment="FEAT : CRIAÇÃO DAS PORTAS DE ENTRADA E SAIDA PARA PESSOA TRABALHA EM ATIVIDADE">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaTrabalhaEmAtividadeUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/input/PessoaTrabalhaEmAtividadeUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaTrabalhaEmAtividadeOutputPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/application/ports/output/PessoaTrabalhaEmAtividadeOutputPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/PessoaTrabalhaEmAtividadeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/domain/services/PessoaTrabalhaEmAtividadeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/input/http/rest/controller/PessoaTrabalhaEmAtividadeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaTrabalhaEmAtividadeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/PessoaTrabalhaEmAtividadeAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/entity/PessoaTabalhaEmAtividadeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/entity/PessoaTrabalhaEmAtividadeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/mapper/PessoaTrabalhaEmAtividade/PessoaTrabalhaEmAtividadeMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/PessoaTrabalhaEmAtividadeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/projetointegrador/projetointegrador/infra/adapters/output/persistence/repository/PessoaTrabalhaEmAtividadeRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +59,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "vinnicius",
     "last_opened_file_path": "/home/vnn/Documents/GitHub/projeto_interdisciplinar/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

@@ -8,21 +8,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pessoaAtividades")
 @RequiredArgsConstructor
-public class PessoaTrabalhaEmAtividade {
+public class PessoaTrabalhaEmAtividadeController {
 
     private final TokenService tokenService;
     private final PessoaTrabalhaEmAtividadeUseCase pessoaTrabalhaEmAtividadeUseCase;
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> criarPessoaTrabalhaEmAtividade(@RequestHeader String token , @RequestBody CreatePessoaTrabalhaEmAtividadeDTO createPessoaTrabalhaEmAtividadeDTO){
+    public ResponseEntity<?> criarPessoaTrabalhaEmAtividade(@RequestHeader("Authorization") String token , @RequestBody CreatePessoaTrabalhaEmAtividadeDTO createPessoaTrabalhaEmAtividadeDTO){
         try{
             if(createPessoaTrabalhaEmAtividadeDTO.getPtaIdPessoa() != null){
                 createPessoaTrabalhaEmAtividadeDTO.setPtaIdPessoa(createPessoaTrabalhaEmAtividadeDTO.getPtaIdPessoa());
@@ -40,6 +39,9 @@ public class PessoaTrabalhaEmAtividade {
     public ResponseEntity<?> listarPessoaTrabalhaEmAtividade(){
         try {
             List<br.com.projetointegrador.projetointegrador.domain.model.PessoaTrabalhaEmAtividade> pessoasTrabalhaEmAtividade = pessoaTrabalhaEmAtividadeUseCase.listarPessoaTrabalhaEmAtividade();
+            if(pessoasTrabalhaEmAtividade.isEmpty()){
+                return ResponseEntity.badRequest().build();
+            }
             return ResponseEntity.status(HttpStatus.OK).body(pessoasTrabalhaEmAtividade);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
