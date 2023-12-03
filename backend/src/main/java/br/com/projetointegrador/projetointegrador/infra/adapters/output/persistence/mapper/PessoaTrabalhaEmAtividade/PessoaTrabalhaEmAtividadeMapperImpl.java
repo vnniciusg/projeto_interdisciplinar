@@ -21,7 +21,7 @@ public class PessoaTrabalhaEmAtividadeMapperImpl implements PessoaTrabalhaEmAtiv
     public PessoaTrabalhaEmAtividade toPessoaTrabalhaEmAtividade(PessoaTrabalhaEmAtividadeEntity pessoaTrabalhaEmAtividadeEntity) {
         PessoaTrabalhaEmAtividade pessoaTrabalhaEmAtividade = new PessoaTrabalhaEmAtividade();
 
-        pessoaTrabalhaEmAtividade.setPtaId(pessoaTrabalhaEmAtividade.getPtaId());
+        pessoaTrabalhaEmAtividade.setPtaId(pessoaTrabalhaEmAtividadeEntity.getPtaId());
         pessoaTrabalhaEmAtividade.setPtaAtividade(atividadePersistenceMapper.toAtividade(pessoaTrabalhaEmAtividadeEntity.getPtaAtividade()));
         pessoaTrabalhaEmAtividade.setPtaPessoa(pessoaPersistenceMapper.toPessoa(pessoaTrabalhaEmAtividadeEntity.getPtaPessoa()));
         pessoaTrabalhaEmAtividade.setPtpDataFim(pessoaTrabalhaEmAtividadeEntity.getPtpDataFim());
