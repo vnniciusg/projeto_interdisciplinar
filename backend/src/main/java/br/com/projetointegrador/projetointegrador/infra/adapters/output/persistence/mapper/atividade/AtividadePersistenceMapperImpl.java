@@ -2,6 +2,8 @@ package br.com.projetointegrador.projetointegrador.infra.adapters.output.persist
 
 import br.com.projetointegrador.projetointegrador.domain.model.Atividade.Atividade;
 import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.entity.AtividadeEntity;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.pessoa.PessoaPersistenceMapper;
+import br.com.projetointegrador.projetointegrador.infra.adapters.output.persistence.mapper.projeto.ProjetoPersistenceMapper;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -13,15 +15,20 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AtividadePersistenceMapperImpl implements AtividadePersistenceMapper{
 
-    private final ModelMapper modelMapper;
-    @Override
-    public AtividadeEntity toAtividadeEntity(Atividade atividade) {
-        return modelMapper.map(atividade, AtividadeEntity.class);
-    }
+    private final PessoaPersistenceMapper pessoaPersistenceMapper;
+    private final ProjetoPersistenceMapper projetoPersistenceMapper;
 
     @Override
     public Atividade toAtividade(AtividadeEntity atividadeEntity) {
-        return modelMapper.map(atividadeEntity, Atividade.class);
+        Atividade atividade = new Atividade();
+
+        atividade.setaId(atividadeEntity.getAId());
+        atividade.setaDescricao(atividadeEntity.getADescricao());
+        atividade.setaTipo(atividadeEntity.getATipo());
+        atividade.setaPessoaCadastra(pessoaPersistenceMapper.toPessoa(atividadeEntity.getAPessoaCadastra()));
+        atividade.setaProjeto(projetoPersistenceMapper.toProjeto(atividadeEntity.getAProjeto()));
+
+        return atividade;
     }
 
     @Override
