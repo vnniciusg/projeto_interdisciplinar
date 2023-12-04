@@ -1,7 +1,5 @@
 import React from "react";
-import { FaFolderPlus, FaFolderOpen } from "react-icons/fa";
-import { MdContacts } from "react-icons/md";
-import { FaBookOpen } from "react-icons/fa6";
+import { FaFolderPlus } from "react-icons/fa";
 import { LuLoader2 } from "react-icons/lu";
 import {
   Tab,
@@ -70,10 +68,10 @@ const Projetos = () => {
       Promise.resolve(
         GetEveryone(userToken)
           .then((res) => {
-            const allCoords= res.data.filter((users: Pessoa) => {
-              return users.pTipo === TipoPessoa.COORDENADOR
+            const allCoords = res.data.filter((users: Pessoa) => {
+              return users.pTipo === TipoPessoa.COORDENADOR;
             });
-            setCoords(allCoords)
+            setCoords(allCoords);
           })
           .catch((err) => console.log(err))
       );
@@ -110,20 +108,8 @@ const Projetos = () => {
                 <FaFolderPlus />
                 Cadastrar novo projeto{" "}
               </CustomTab>
-              <CustomTab>
-                <FaFolderOpen />
-                Ver projetos cadastrador por min
-              </CustomTab>
             </>
           )}
-          <CustomTab>
-            <MdContacts />
-            Projetos em andamento
-          </CustomTab>
-          <CustomTab>
-            <FaBookOpen />
-            Ver Todos os projetos
-          </CustomTab>
         </TabList>
         {isAdmin() && (
           <>
@@ -134,38 +120,39 @@ const Projetos = () => {
               >
                 <Title message="Cadastre uma nova atividade para ser realizada por alguém" />
                 <Controller
-              name="prIdPessoaCoordena"
-              rules={{ required: true }}
-              render={({
-                field: { value, name, onChange },
-                formState: { errors },
-              }) => (
-                <div>
-                  <select
-                    value={value}
-                    onChange={onChange}
-                    id={name}
-                    className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm uppercase"
-                  >
-                    {coords.map((coord) => (
-                      <option key={coord.pID} value={coord.pID}>
-                        {coord.pID} - {coord.pNome}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.prIdPessoaCoordena &&
-                    (errors.prIdPessoaCoordena?.type == "required" ? (
-                      <Erro message="Selecione o tipo" />
-                    ) : (
-                      ""
-                    ))}
-                </div>
-              )}
-              control={control}
-            />
-                <Controller
+                  name="prIdPessoaCoordena"
                   control={control}
+                  rules={{ required: true }}
+                  render={({
+                    field: { value, name, onChange },
+                    formState: { errors },
+                  }) => (
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-semibold">Nome do coordenador</label>
+                      <select
+                        value={value}
+                        onChange={onChange}
+                        id={name}
+                        className="p-2 rounded-lg border-2 border-bordercolor w-full text-sm uppercase"
+                      >
+                        {coords.map((coord) => (
+                          <option key={coord.pID} value={coord.pID}>
+                            {coord.pID} - {coord.pNome}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.prIdPessoaCoordena &&
+                        (errors.prIdPessoaCoordena?.type == "required" ? (
+                          <Erro message="Selecione o tipo" />
+                        ) : (
+                          ""
+                        ))}
+                    </div>
+                  )}
+                />
+                <Controller
                   name="prNome"
+                  control={control}
                   rules={{ required: true }}
                   render={({
                     field: { value, name, onChange },
@@ -196,7 +183,8 @@ const Projetos = () => {
                     field: { value, name, onChange },
                     formState: { errors },
                   }) => (
-                    <div>
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-semibold">Lista dos recursos</label>
                       <textarea
                         value={value}
                         onChange={onChange}
@@ -222,7 +210,8 @@ const Projetos = () => {
                     field: { value, name, onChange },
                     formState: { errors },
                   }) => (
-                    <div>
+                    <div className="flex flex-col gap-1">
+                      <label className="text-sm font-semibold">Descrição do projeto</label>
                       <textarea
                         value={value}
                         onChange={onChange}
@@ -258,12 +247,8 @@ const Projetos = () => {
                 />
               </form>
             </CustomPanel>
-
-            <CustomPanel>2</CustomPanel>
           </>
         )}
-        <CustomPanel>3</CustomPanel>
-        <CustomPanel>4</CustomPanel>
       </Tabs>
       <div></div>
     </>

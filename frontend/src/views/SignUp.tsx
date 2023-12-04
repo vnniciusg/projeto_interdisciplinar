@@ -30,9 +30,9 @@ const SignUp = () => {
   });
 
   const tipos: { val: TipoPessoa; nome: string }[] = [
-    { val: TipoPessoa.ESTAGIÁRIO, nome: "Estagiário" },
-    { val: TipoPessoa.COORDENADOR, nome: "Coordenador" },
-    { val: TipoPessoa.ADMINISTRADOR, nome: "Administrador" },
+    { val: TipoPessoa.ESTAGIÁRIO, nome: "ESTAGIÁRIO" },
+    { val: TipoPessoa.COORDENADOR, nome: "COORDENADOR" },
+    { val: TipoPessoa.ADMINISTRADOR, nome: "ADMINISTRADOR" },
   ];
 
   const onSubmit = (data: CadastroPessoa) => {
@@ -61,7 +61,7 @@ const SignUp = () => {
                 <Input
                   id={name}
                   type="text"
-                  label="Seu nome completo"
+                  label="O nome completo"
                   onChange={onChange}
                   value={value}
                   placeholder="Digite seu nome completo..."
@@ -155,7 +155,7 @@ const SignUp = () => {
                   value={value}
                   onChange={onChange}
                   type="text"
-                  label="Seu CPF"
+                  label="O CPF"
                   placeholder="Digite o seu número de CPF..."
                 />
                 {errors.pCpf &&
@@ -287,7 +287,7 @@ const SignUp = () => {
             render={({ field: { name, onChange, value }, formState: {errors} }) => (
               <div>
                 <Select
-                  label="Selecione o seu tipo de usuário"
+                  label="Selecione o tipo de usuário"
                   id={name}
                   onChange={onChange}
                   value={value}
@@ -313,8 +313,8 @@ const SignUp = () => {
                   value={value}
                   onChange={onChange}
                   type="password"
-                  label="Senha"
-                  placeholder="Digite a sua senha..."
+                  label="Senha do novo usuário"
+                  placeholder="Digite a senha do novo usuário..."
                 />
                 {errors.pSenha &&
                   (errors.pSenha.type == "required"
@@ -326,7 +326,7 @@ const SignUp = () => {
           <Button type="submit" message="Enviar" />
         </form>
         <div className="flex flex-row items-center gap-x-1 flex-wrap text-xs gap-y-1 self-end">
-            Já possui uma conta? <a href="/signin" className="text-secondary underline">Faça o login agora</a>
+            Já possui uma conta? <a href="/login" className="text-secondary underline">Faça o login agora</a>
         </div>
       </div>
     </>

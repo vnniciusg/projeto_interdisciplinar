@@ -2,11 +2,10 @@ import axios from "axios"
 import { CadastroAtividade, Login , CadastraAtividadePessoa} from "models/DTOs";
 import { CadastroProjeto } from "models/DTOs";
 
-
 export const GetAvailableProjects = async (token: string) => {
     return axios.get("https://projetointerdisciplinar-production.up.railway.app/api/v1/projetos", {
         headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         }
     });
 }

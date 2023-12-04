@@ -1,8 +1,7 @@
 import Footer from "components/fixeds/Footer";
 import Header from "components/fixeds/Header";
-import ProtectedRoute from "components/fixeds/ProtectedRoute";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 const Inicio = React.lazy(() => import("views/Home"));
 const Login = React.lazy(() => import("views/Login"))
 const Registro = React.lazy(() => import("views/SignUp"))
@@ -17,16 +16,11 @@ function App() {
     } else {
       setShowNavAndFooter(true);
     }
-<<<<<<< Updated upstream
-  }, [window.location.pathname])
-=======
-  }, [])
-  console.log(showNavAndFooter)
->>>>>>> Stashed changes
+  })
+
   return (
     <>
       <React.Suspense>
-        <BrowserRouter>
           <div className="font-global">
             <Header isShown={showNavAndFooter} />
             <div className="w-[90%] mx-auto min-h-screen pt-[150px] text-text">
@@ -34,15 +28,13 @@ function App() {
                 <Route index path="/" Component={Inicio} />
                 <Route path="login" Component={Login} />
                 <Route path="registro" Component={Registro} />
-                <Route Component={ProtectedRoute}>
                   <Route path="atividades" Component={Atividades}/>
                   <Route path="projetos" Component={Projetos} />
-                </Route>
+                
               </Routes>
             </div>
             <Footer isShown={showNavAndFooter} />
           </div>
-        </BrowserRouter>
       </React.Suspense>
     </>
   );
