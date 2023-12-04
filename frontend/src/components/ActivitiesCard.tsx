@@ -45,6 +45,12 @@ const ActivitiesCard = ({activity}: ActivitiesCardProps) => {
           <div className="flex flex-col gap-1">
             <p className="text-xs italic">Foi cadastrada por:</p>
             <div className='flex flex-row items-center gap-x-1'>
+                <span className='capitalize'>{activity.ptaPessoa?.pNome} </span> - {activity.ptaAtividade?.aPessoaCadastra?.pTipo}
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-xs italic">Esta sendo feita por:</p>
+            <div className='flex flex-row items-center gap-x-1'>
                 <span className='capitalize'>{activity.ptaPessoa?.pNome} </span> - {activity.ptaPessoa?.pTipo}
             </div>
           </div>

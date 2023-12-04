@@ -6,7 +6,7 @@ export type Atividade = {
     aIdProjeto: Projeto;
     aDescricao: string;
     aTipo: TipoAtividade;
-    aIdPessoaCadastra?: Pessoa;
+    aPessoaCadastra?: Pessoa;
 
 }
 

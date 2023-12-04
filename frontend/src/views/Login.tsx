@@ -85,7 +85,7 @@ const SignIn = () => {
         <Button message="Enviar" type="submit" />
       </form>
       <div className="flex flex-row items-center gap-x-1 flex-wrap text-xs gap-y-1 self-end">
-            Ainda não possui uma conta? <a href="/signup" className="text-secondary underline">Crie uma agora</a>
+            Ainda não possui uma conta? <a href="/registro" className="text-secondary underline">Crie uma agora</a>
         </div>
     </div>
   );

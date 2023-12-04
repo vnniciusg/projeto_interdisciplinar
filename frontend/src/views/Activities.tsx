@@ -1,6 +1,5 @@
 import React from "react";
 import { FaFolderPlus, FaFolderOpen } from "react-icons/fa";
-import { MdContacts } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa6";
 import { LuLoader2 } from "react-icons/lu";
 import { MdAssignment } from "react-icons/md";
@@ -69,17 +68,13 @@ CustomTab.tabsRole = "Tab";
 
 const Atividades = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [availableProjects, setAvailableProjects] = React.useState<
-    RecuperaProjeto[]
-  >([]);
-  const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>(
-    []
-  );
-  const [myActivities, setMyActivities] = React.useState<RecuperaAtividade[]>(
-    []
-  );
+  const [searchParam, setSearchParam] = React.useState<string>("");
+
+  const [availableProjects, setAvailableProjects] = React.useState<RecuperaProjeto[]>([]);
+  const [allActivities, setAllActivities] = React.useState<RecuperaAtividade[]>([]);
+  const [myActivities, setMyActivities] = React.useState<RecuperaAtividade[]>([]);
   const [doingActivities, setDoingActivities] = React.useState<PessoaTrabalhaAtividade[]>([]);
-  const [acitivitySearch, setActivitySearch] = React.useState<string>("");
+  
   const { isAdmin, isCoord, userToken } = React.useContext(LoginContext);
   React.useEffect(() => {
     if (userToken) {
@@ -93,7 +88,7 @@ const Atividades = () => {
           setAvailableProjects(responses[0].data);
           setAllActivities(responses[1].data);
           setMyActivities(responses[2].data);
-          setDoingActivities(responses[3].data)
+          setDoingActivities(responses[3].data);
         })
         .catch((errs) => console.log(errs));
     }
@@ -125,7 +120,6 @@ const Atividades = () => {
       aDescricao: data.aDescricao,
       aTipo: data.aTipo,
     };
-    console.log(newData);
     if (userToken) {
       Promise.resolve(
         CreateNewActivity(userToken, newData)
@@ -140,6 +134,14 @@ const Atividades = () => {
       );
     }
   };
+
+  const filteredActivitiesByDescription = allActivities.filter(
+    (act: RecuperaAtividade) => {
+      return act.aDescricao.toLowerCase().includes(searchParam.toLowerCase());
+    }
+  );
+
+  console.log(filteredActivitiesByDescription);
 
   return (
     <>
@@ -164,10 +166,6 @@ const Atividades = () => {
           ) : (
             <></>
           )}
-          <CustomTab>
-            <MdContacts />
-            Ver minhas atividades
-          </CustomTab>
           <CustomTab>
             <FaBookOpen />
             Ver todas as atividades
@@ -297,30 +295,33 @@ const Atividades = () => {
             </div>
           </div>
         </CustomPanel>
-        <CustomPanel>3</CustomPanel>
         <CustomPanel>
           <div className="flex flex-col gap-y-4">
             <Title message="Aqui você consegue ver todas as atividades, disponíveis ou não" />
             <div className="w-full md:w-[70%]">
               <SearchInput
                 label="Busque por uma atividade especifica"
-                hasText={acitivitySearch.length > 0}
-                value={acitivitySearch}
-                onChange={(e) => setActivitySearch(e.target.value)}
+                hasText={searchParam.length > 0}
+                value={searchParam}
+                onChange={(e) => setSearchParam(e.target.value)}
                 placeholder="Pesquise pela descrição..."
                 type="text"
-                onClick={() => setActivitySearch("")}
+                onClick={() => setSearchParam("")}
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
-              {allActivities.map((act, index) => (
-                <Card activity={act} key={index} />
-              ))}
+              {searchParam.length > 0
+                ? allActivities.map((act, index) => (
+                    <Card activity={act} key={index} />
+                  ))
+                : filteredActivitiesByDescription.map((act, index) => (
+                    <Card activity={act} key={index} />
+                  ))}
             </div>
           </div>
         </CustomPanel>
         <CustomPanel>
-        <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4">
             <Title message="Aqui você consegue ver todas as atividades que estão sendo feitas" />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-2">
               {doingActivities.map((doing, index) => (

@@ -114,14 +114,15 @@ const Card = ({ activity }: CardProps) => {
               name="ptaIdAtividade"
               render={() => (
                 <Input
-                  id="ptaIdAtividade"
-                  type="text"
-                  disabled
-                  value={activity.aId}
+                id="ptaIdAtividade"
+                type="text"
+                disabled
+                value={activity.aId}
                 />
-              )}
-            />
+                )}
+                />
             <Controller
+              rules={{required: true}}
               control={control}
               name="ptpDataInicio"
               render={({
@@ -148,6 +149,7 @@ const Card = ({ activity }: CardProps) => {
             />
             <Controller
               control={control}
+              rules={{required: true}}
               name="ptpDataFim"
               render={({
                 field: { value, name, onChange },
